@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    @await Component.InvokeAsync("_AdminHeaderViewComponentPartial")
+</head>
+<body class="admin-body">
+    <div class="admin-shell">
+        @await Component.InvokeAsync("_AdminSidebarViewComponentPartial")
+        <div class="admin-main">
+            @await Component.InvokeAsync("_AdminNavbarViewComponentPartial")
+            <main class="admin-content">
+                @RenderBody()
+            </main>
+            @await Component.InvokeAsync("_AdminFooterViewComponentPartial")
+        </div>
+    </div>
+    @await Component.InvokeAsync("_AdminScriptViewComponentPartial")
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

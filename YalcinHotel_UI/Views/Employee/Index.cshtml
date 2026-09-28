@@ -1,0 +1,27 @@
+@model List<Employee>
+@{
+    ViewData["Title"] = "Çalışan Yönetimi";
+    Layout = "_LayoutAdmin";
+}
+<section class="admin-page-heading"><div><span class="admin-kicker">OTEL EKİBİ</span><h1>Çalışan yönetimi</h1><p>Çalışan ekleyin veya ekip listesinden çıkarın.</p></div><a class="btn btn-primary" asp-action="Create"><i class="fa-solid fa-user-plus"></i> Çalışan ekle</a></section>
+@if (TempData["EmployeeMessage"] is string message) { <div class="admin-alert"><i class="fa-solid fa-circle-check"></i> @message</div> }
+<div class="card"><div class="card-header"><h2 class="card-title">Otel ekibi</h2><span class="admin-count">@Model.Count çalışan</span></div><div class="card-body table-responsive">
+    @if (Model.Count == 0)
+    {
+        <div class="admin-empty"><i class="fa-solid fa-people-group"></i><h3>Ekibiniz henüz eklenmemiş</h3><p>İlk çalışanı ekleyerek başlayın.</p></div>
+    }
+    else
+    {
+        <table class="table"><thead><tr><th>ÇALIŞAN</th><th>UNVAN</th><th>DURUM</th><th>İŞLEM</th></tr></thead><tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td><div class="testimonial-guest"><img src="@employee.ImageUrl" alt="" /><div><strong>@employee.Name @employee.Surname</strong><small class="table-subline">Çalışan #@employee.Id</small></div></div></td>
+                <td>@employee.Title</td>
+                <td><span class="status-pill @(employee.IsActive && employee.Status ? "status-approved" : "status-rejected")">@(employee.IsActive && employee.Status ? "Aktif" : "Listeden çıkarıldı")</span></td>
+                <td><form asp-action="ToggleStatus" method="post"><input type="hidden" name="id" value="@employee.Id" /><button class="btn @(employee.IsActive && employee.Status ? "btn-danger-soft" : "btn-primary") btn-sm" type="submit"><i class="fa-solid @(employee.IsActive && employee.Status ? "fa-user-minus" : "fa-user-check")"></i> @(employee.IsActive && employee.Status ? "Listeden çıkar" : "Yeniden ekle")</button></form></td>
+            </tr>
+        }
+        </tbody></table>
+    }
+</div></div>

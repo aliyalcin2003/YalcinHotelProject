@@ -1,0 +1,237 @@
+/* Genel Ayarlar ve Renk Paleti */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Navbar (Üst Menü) Stili */
+header {
+    background-color: #0f2027;
+    color: #fff;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+    .logo h1 span {
+        color: #ffd700;
+        font-size: 1rem;
+    }
+
+.logo p {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: #aaa;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+    .nav-links li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+        .nav-links li a:hover {
+            color: #ffd700;
+        }
+
+/* Hero (Banner) Alanı */
+.hero {
+    height: 70vh;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+/* Oda Kartları Izgarası (Grid) */
+.rooms-section {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+    .rooms-section h2 {
+        font-size: 2.2rem;
+        color: #0f2027;
+        margin-bottom: 40px;
+    }
+
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.room-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: left;
+    transition: transform 0.3s;
+}
+
+    .room-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .room-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+.room-info {
+    padding: 20px;
+}
+
+    .room-info h3 {
+        color: #0f2027;
+        margin-bottom: 10px;
+    }
+
+    .room-info p {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+.price {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #d4af37;
+    margin-bottom: 15px;
+}
+
+.btn-book, .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #0f2027;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+    .btn-book:hover, .btn:hover {
+        background: #d4af37;
+    }
+
+/* Footer Stili */
+footer {
+    background: #0f2027;
+    color: #aaa;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 80px;
+    font-size: 0.9rem;
+}
+
+/* Yalcin Hotel Tahiti theme */
+:root{--ocean:#0f2027;--ocean-deep:#08191f;--lagoon:#168b8d;--gold:#d4af37;--sand:#f7f4ee;--ink:#23353a;--muted:#718086;--line:#e4e8e7}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{color:var(--ink);background:#fff;line-height:1.65;padding-top:78px}
+.site-header{position:fixed;inset:0 0 auto;z-index:1000;background:rgba(10,31,38,.97);box-shadow:0 8px 28px rgba(0,0,0,.12);padding:0 22px}
+.site-header .navbar{min-height:78px;padding:0;max-width:1240px}
+.logo{text-decoration:none;color:#fff;display:flex;flex-direction:column;gap:0;line-height:1.2}
+.logo strong{font-size:1.17rem;letter-spacing:1.6px}.logo strong span{color:var(--gold);font-size:.78rem;letter-spacing:1px;margin-left:4px}
+.logo small{color:#b5c3c4;font-size:.61rem;letter-spacing:3px;margin-top:5px}
+.nav-links{align-items:center;gap:clamp(13px,2vw,28px)}
+.nav-links li a{font-size:.84rem;letter-spacing:.2px;color:#e4ebea}.nav-links li a:hover,.nav-links li a.active{color:var(--gold)}
+.nav-links .nav-book{background:var(--gold);color:var(--ocean);padding:11px 16px;border-radius:2px;font-weight:700;display:inline-flex;gap:10px;align-items:center}.nav-links .nav-book:hover{color:#fff;background:var(--lagoon)}
+.nav-toggle{display:none;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.35);border-radius:3px;padding:9px 12px;font-size:1rem}
+.hero{height:min(760px,calc(100vh - 78px));min-height:530px;margin:0;background-size:cover;background-position:center;position:relative}
+.hero-content{max-width:800px;text-align:left;margin-left:max(calc((100vw - 1200px)/2),6vw);padding:36px 24px;animation:rise-in .7s ease both}
+.hero-content .eyebrow{color:#f0d676}.eyebrow{color:#a78525;font-size:.7rem;font-weight:800;letter-spacing:3px;display:inline-flex;align-items:center;gap:9px;margin-bottom:15px}
+.hero-content h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:clamp(2.8rem,5.8vw,5.4rem);line-height:1.08;max-width:760px;margin:0 0 20px;text-shadow:0 5px 25px rgba(0,0,0,.28)}
+.hero-content p{font-size:1.08rem;color:#e4eceb;max-width:540px;margin-bottom:30px}
+.btn,.btn-book{width:auto;border:0;border-radius:2px;padding:13px 21px;background:var(--ocean);color:#fff;font-size:.85rem;font-weight:700;letter-spacing:.25px;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;gap:10px;transition:background .2s,transform .2s}
+.btn:hover,.btn-book:hover{background:var(--lagoon);color:#fff;transform:translateY(-2px)}.btn-gold{background:var(--gold);color:var(--ocean)}.btn-gold:hover{background:#f1d66b;color:var(--ocean)}
+.hero-scroll{position:absolute;right:6vw;bottom:35px;color:#fff;text-decoration:none;letter-spacing:2px;font-size:.63rem;display:flex;align-items:center;gap:12px}.hero-scroll span{width:35px;height:1px;background:var(--gold)}
+.page-hero{height:360px;margin:-0px 0 0;background:linear-gradient(90deg,rgba(7,30,37,.78),rgba(7,30,37,.2)),url('https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1920&q=80') center/cover;display:flex;flex-direction:column;justify-content:center;padding:50px max(calc((100vw - 1200px)/2),7vw);color:#fff}
+.page-hero h1{font:400 clamp(2.5rem,5vw,4rem) Georgia,serif;margin:0 0 8px}.page-hero p{color:#e0e8e6;max-width:600px;margin:0}
+.page-hero .eyebrow{color:#f0d676}
+.rooms-section{max-width:1240px;margin:0 auto;padding:88px 24px;text-align:center}
+.section-heading{max-width:700px;margin:0 auto 42px}.section-heading h2,.about-text h2,.team-section h2,.testimonial-section h2,.contact-section h2{font:400 clamp(2rem,3.4vw,3rem) Georgia,'Times New Roman',serif;color:var(--ocean);line-height:1.15;margin:0 0 13px}
+.section-heading p{color:var(--muted);margin:0}.room-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:25px;text-align:left}
+.room-card{border:1px solid #e9ecea;border-radius:4px;box-shadow:0 12px 35px rgba(12,42,46,.07);transition:transform .28s,box-shadow .28s}.room-card:hover{transform:translateY(-6px);box-shadow:0 22px 42px rgba(12,42,46,.13)}
+.room-image-wrap{height:245px;position:relative;overflow:hidden;background:var(--sand)}.room-card img{height:100%;transition:transform .5s}.room-card:hover img{transform:scale(1.04)}
+.room-tag{position:absolute;left:18px;top:18px;background:rgba(9,35,41,.86);color:#f2d774;padding:7px 10px;font-size:.6rem;letter-spacing:1.3px;font-weight:700}
+.room-info{padding:22px 23px 24px}.room-meta{display:flex;justify-content:space-between;color:#889496;font-size:.73rem;margin-bottom:13px}.room-meta i{color:var(--gold);margin-right:5px}.room-info h3{font:400 1.4rem Georgia,serif;color:var(--ocean);margin:0 0 10px}.room-info p{font-size:.88rem;color:#748187;line-height:1.7;min-height:48px;margin:0 0 20px}
+.room-card-bottom{border-top:1px solid var(--line);padding-top:16px;display:flex;align-items:center;justify-content:space-between;gap:12px}.price{font-size:1.14rem;color:#a78525}.price small{font-size:.73rem;font-weight:500;color:#899395}.room-link{color:var(--ocean);font-weight:700;text-decoration:none;font-size:.8rem}.room-link i{color:var(--gold);margin-left:5px}.room-link:hover{color:var(--lagoon)}
+.empty-state{grid-column:1/-1;background:var(--sand);padding:44px 20px;color:var(--muted);text-align:center}.empty-state i{font-size:2rem;color:var(--gold)}.empty-state h3{color:var(--ocean);margin:10px 0 2px}
+.about-section{max-width:1200px;margin:0 auto;padding:88px 24px}.about-container{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:62px}.about-text h2{margin:0 0 18px}.about-text p{color:#68777a;line-height:1.85;margin:0 0 23px}.about-image img{width:100%;min-height:390px;max-height:520px;object-fit:cover;border-radius:3px;box-shadow:22px 22px 0 var(--sand)}
+.about-features{display:grid;gap:12px;margin-top:25px}.feature-item{font-weight:650;color:var(--ocean)}.feature-item i{color:var(--gold);width:22px;margin-right:8px}
+.team-section{background:var(--sand);padding:76px 24px;text-align:center}.team-section>h2,.team-section>.section-heading h2{margin-bottom:10px}.team-grid{max-width:1000px;margin:35px auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}.team-card{padding:28px 22px;background:#fff;box-shadow:0 8px 25px rgba(12,42,46,.06);border-radius:4px}.team-card img{width:132px;height:132px;object-fit:cover;border-radius:50%;border:3px solid var(--gold);margin-bottom:15px}.team-card h3{font:400 1.15rem Georgia,serif;color:var(--ocean);margin:0 0 4px}.team-card p{color:#a78525;font-size:.85rem;margin:0}
+.testimonial-section{background:#eef4f2;padding:76px 24px;text-align:center}.testimonial-grid{max-width:1120px;margin:36px auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;text-align:left}.testimonial-card{padding:27px;background:white;border:1px solid #e2e8e5;box-shadow:0 8px 25px rgba(12,42,46,.05)}.testimonial-card:first-child{border:1px dashed var(--gold)}.testimonial-stars{color:var(--gold);letter-spacing:2px;margin-bottom:13px}.testimonial-card>p{font-style:italic;color:#5c6a6c;line-height:1.75;min-height:72px}.testimonial-person{display:flex;gap:13px;align-items:center;border-top:1px solid var(--line);padding-top:16px}.testimonial-person img{width:50px;height:50px;object-fit:cover;border-radius:50%}.testimonial-person strong{display:block;color:var(--ocean);font-size:.9rem}.testimonial-person span{display:block;color:#a78525;font-size:.74rem}
+.services-section{background:var(--ocean);color:#fff;padding:76px 24px;text-align:center}.services-section h2{font:400 clamp(2rem,3.4vw,3rem) Georgia,serif;margin:0 0 32px}.service-grid{max-width:1150px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}.service-card{padding:26px 20px;border:1px solid rgba(255,255,255,.12)}.service-card i{font-size:1.8rem;color:var(--gold);margin-bottom:14px}.service-card h3{font:400 1.1rem Georgia,serif;margin:0 0 8px}.service-card p{color:#b8c6c5;font-size:.84rem;margin:0}
+.contact-section{max-width:1200px;margin:0 auto;padding:82px 24px}.contact-intro{text-align:center;margin-bottom:38px}.contact-intro p{color:var(--muted);margin:7px auto 0}.contact-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:26px;align-items:stretch}.contact-details,.contact-form-card{background:#fff;padding:34px;box-shadow:0 12px 36px rgba(12,42,46,.07);border:1px solid #edf0ee}.contact-details{background:var(--ocean);color:#fff}.contact-details h3,.contact-form-card h3{font:400 1.55rem Georgia,serif;margin:0 0 20px}.contact-details p{color:#c8d2d0;display:flex;gap:13px;align-items:flex-start;margin:16px 0;font-size:.91rem}.contact-details i{color:var(--gold);margin-top:4px}.contact-form{display:flex;flex-direction:column;gap:15px}.contact-form .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:.79rem;font-weight:700;color:var(--ocean)}.field input,.field select,.field textarea,.booking-form input,.booking-form select{width:100%;padding:12px 13px;border:1px solid #d9e0dd;border-radius:2px;background:#fcfdfc;font:inherit;font-size:.9rem;outline:none}.field input:focus,.field textarea:focus,.booking-form input:focus,.booking-form select:focus{border-color:var(--lagoon);box-shadow:0 0 0 3px rgba(22,139,141,.1)}.field textarea{resize:vertical}.field-validation-error,.validation-summary-errors{color:#a93232;font-size:.79rem}.contact-form button{align-self:flex-start;margin-top:5px}
+.booking-section{max-width:960px;margin:-45px auto 78px;position:relative;z-index:2;background:#fff;padding:34px;box-shadow:0 14px 42px rgba(0,0,0,.15);border-top:3px solid var(--gold)}.booking-section h2{text-align:center;font:400 2rem Georgia,serif;color:var(--ocean);margin:0 0 8px}.booking-section>p{text-align:center;color:var(--muted);margin:0 0 26px}.booking-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.booking-form .field-full{grid-column:1/-1}.booking-form button{grid-column:1/-1;width:100%}
+.site-footer{background:var(--ocean-deep);color:#aeb9b8;margin-top:0;padding:0;text-align:left;font-size:inherit}.footer-content{max-width:1240px;margin:auto;padding:52px 24px 38px;display:grid;grid-template-columns:1.3fr 1fr 1fr 1.15fr;gap:30px;text-align:left}.footer-content h3{color:var(--gold);font-size:1rem;letter-spacing:1.5px;margin:0 0 13px}.footer-content h4{color:#fff;font:400 1.05rem Georgia,serif;margin:0 0 14px}.footer-content p,.footer-content a{color:#aeb9b8;font-size:.84rem;line-height:1.7;text-decoration:none}.footer-content a{display:block;margin:5px 0}.footer-content a:hover{color:var(--gold)}.copyright{border-top:1px solid rgba(255,255,255,.1);text-align:center;padding:18px 20px;color:#829291;font-size:.76rem;margin:0}
+.site-alert{max-width:1152px;margin:28px auto -40px;padding:14px 18px;background:#edf7f1;border-left:3px solid #4caa83;color:#275f4e;font-size:.86rem}.site-alert i{margin-right:8px}
+.reservation-success{min-height:55vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:72px 24px;max-width:700px;margin:auto}.success-icon{width:64px;height:64px;display:grid;place-items:center;border-radius:50%;background:#e6f3ec;color:#368764;font-size:1.35rem;margin-bottom:20px}.reservation-success h1{font:500 clamp(2rem,4vw,3rem) Georgia,serif;color:var(--ocean);margin:0 0 12px}.reservation-success p{color:var(--muted);max-width:530px;margin:0 0 24px}
+.guest-actions{display:flex;align-items:center;gap:9px;margin-left:5px}.guest-actions a{padding:9px 13px;border:1px solid var(--gold);border-radius:2px;font-size:.76rem}.guest-actions .nav-login{color:var(--gold)}.guest-actions .nav-register{background:var(--gold);color:var(--ocean);font-weight:700}.guest-actions a:hover{background:#f0d66c;color:var(--ocean)}
+.account-nav{position:relative;list-style:none}.account-trigger{display:flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;padding:5px 9px 5px 5px;border-radius:30px;cursor:pointer;font:600 .78rem 'Segoe UI',sans-serif}.account-trigger img,.account-initial{width:32px;height:32px;border-radius:50%;object-fit:cover}.account-initial{display:grid;place-items:center;background:var(--gold);color:var(--ocean);font-weight:800}.account-trigger>i{font-size:.63rem;color:var(--gold);margin-left:3px}.account-dropdown{display:none;position:absolute;right:0;top:calc(100% + 11px);z-index:1200;width:205px;padding:7px;background:#fff;border:1px solid var(--line);box-shadow:0 15px 36px rgba(0,0,0,.18);border-radius:4px}.account-nav.is-open .account-dropdown{display:block}.account-dropdown a,.account-dropdown form button{width:100%;display:flex;align-items:center;gap:11px;color:var(--ocean);padding:11px 10px;text-decoration:none;font-size:.8rem;background:transparent;border:0;text-align:left;cursor:pointer}.account-dropdown a:hover,.account-dropdown form button:hover{background:#f2f6f3;color:var(--lagoon)}.account-dropdown i{width:16px;color:#a78525}
+.account-page{max-width:1150px;margin:48px auto 70px;padding:0 22px;min-height:590px;display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.75fr);align-items:stretch;box-shadow:0 15px 50px rgba(11,40,45,.1)}.account-card{background:#fff;padding:clamp(30px,5vw,60px)}.account-card h1,.profile-heading h1{font:400 clamp(2rem,4vw,2.8rem) Georgia,serif;color:var(--ocean);line-height:1.15;margin:0 0 12px}.account-lead{color:var(--muted);font-size:.9rem;max-width:430px;margin:0 0 28px}.account-form{display:grid;gap:16px}.account-form .btn{margin-top:4px;width:100%}.remember-option{display:flex;align-items:center;gap:8px;font-size:.78rem;color:#667679}.remember-option input{accent-color:var(--lagoon)}.account-switch{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}.account-switch a{color:#a78525;font-weight:700;text-decoration:none}.admin-registration-note{font-size:.67rem;color:#869291;margin:16px 0 0}.account-aside{padding:48px clamp(26px,4vw,45px);display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(0deg,rgba(5,31,38,.88),rgba(5,31,38,.12)),url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1000&q=80') center/cover;color:#fff;min-height:480px}.account-aside .eyebrow{color:#efd575}.account-aside h2{font:400 clamp(2.2rem,4vw,3.2rem)/1.1 Georgia,serif;margin:0 0 12px}.account-aside p{color:#d2dedd;margin:0;font-size:.9rem}.profile-page{max-width:890px;margin:54px auto 80px;padding:0 22px}.profile-heading{margin-bottom:24px}.profile-heading p{color:var(--muted);margin:8px 0}.profile-card{background:#fff;padding:clamp(24px,4vw,42px);box-shadow:0 12px 40px rgba(11,40,45,.08);border:1px solid #edf0ee}.profile-card-top{display:flex;align-items:center;gap:18px;border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:26px}.profile-avatar-wrap{width:78px;height:78px;position:relative}.profile-avatar-wrap img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:3px solid #f3e6b1}.profile-avatar-wrap span{position:absolute;right:-1px;bottom:0;width:25px;height:25px;display:grid;place-items:center;background:var(--ocean);color:#fff;border-radius:50%;font-size:.63rem}.profile-card-top h2{font:500 1.35rem Georgia,serif;color:var(--ocean);margin:0}.profile-card-top p{color:var(--muted);margin:4px 0 0;font-size:.83rem}
+.popular-room-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;text-align:left}.popular-room-heading>div:first-child{max-width:700px}.room-carousel-controls{display:flex;gap:10px;flex:none}.room-carousel-controls button{width:46px;height:46px;border:1px solid #dce3df;background:#fff;color:var(--ocean);border-radius:50%;cursor:pointer;transition:background .2s,color .2s,border-color .2s}.room-carousel-controls button:hover{background:var(--ocean);border-color:var(--ocean);color:#fff}.room-carousel-track{display:flex;gap:25px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 3px 22px;scrollbar-width:none}.room-carousel-track::-webkit-scrollbar{display:none}.room-carousel-track .room-card{flex:0 0 calc((100% - 50px)/3);min-width:0;scroll-snap-align:start}.review-create-page{max-width:820px}.review-create-card{max-width:700px;margin:auto}.review-create-card .contact-form button{align-self:flex-start}.profile-actions{display:flex;gap:10px;flex-wrap:wrap}
+@media(max-width:900px){.room-carousel-track .room-card{flex-basis:calc((100% - 25px)/2)}}
+@media(max-width:620px){.popular-room-heading{align-items:flex-start}.room-carousel-controls{gap:7px}.room-carousel-controls button{width:40px;height:40px}.room-carousel-track{gap:16px}.room-carousel-track .room-card{flex-basis:88%}.profile-actions{width:100%}}
+@keyframes rise-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){.nav-toggle{display:block}.nav-links{display:none;position:absolute;top:78px;left:0;right:0;background:#0a1f26;padding:18px 24px 24px;align-items:stretch;gap:0;box-shadow:0 16px 24px rgba(0,0,0,.2)}.nav-links.is-open{display:flex;flex-direction:column}.nav-links li a{display:block;padding:11px 0}.nav-links .nav-book{display:inline-flex;padding:10px 14px;margin-top:8px}.about-container{gap:40px}.footer-content{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.guest-actions{margin:10px 0 0}.guest-actions a{display:inline-flex!important;padding:9px 13px!important}.account-nav{padding:8px 0}.account-dropdown{left:0;right:auto;top:calc(100% + 3px)}.account-page{grid-template-columns:1fr;max-width:620px}.account-aside{min-height:280px}}
+@media(max-width:620px){body{padding-top:70px}.site-header .navbar{min-height:70px}.nav-links{top:70px}.logo strong{font-size:1rem}.hero{height:74vh;min-height:510px}.hero-content{margin-left:0;padding:28px 24px}.hero-content h1{font-size:2.8rem}.hero-content p{font-size:.97rem}.hero-scroll{display:none}.page-hero{height:300px;padding:38px 24px}.rooms-section,.about-section,.contact-section{padding:62px 19px}.room-image-wrap{height:220px}.about-container{grid-template-columns:1fr;gap:34px}.about-image{order:-1}.about-image img{min-height:270px;box-shadow:12px 12px 0 var(--sand)}.contact-layout{grid-template-columns:1fr}.contact-details,.contact-form-card{padding:25px}.contact-form .form-row,.booking-form{grid-template-columns:1fr}.booking-form .field-full,.booking-form button{grid-column:auto}.booking-section{margin:-25px 16px 55px;padding:25px 19px}.booking-section h2{font-size:1.65rem}.footer-content{grid-template-columns:1fr;gap:24px;padding:42px 22px}.account-page{padding:0;margin:24px 12px 48px}.account-card{padding:30px 22px}.account-aside{min-height:240px;padding:28px 22px}.profile-page{padding:0 14px;margin:35px auto 55px}.profile-card{padding:23px 18px}.profile-card-top{align-items:flex-start}}
+/* Hesap kurtarma ve yorum yönetimi */
+.forgot-password-link{margin-top:-8px;margin-bottom:10px;text-align:right}.forgot-password-link a{color:#9b7a35;font-weight:600}.reset-link-preview{display:grid;gap:7px;margin:18px 0;padding:16px;border:1px solid #d8c28b;border-radius:12px;background:#fbf7eb}.reset-link-preview a{color:#765a1e;overflow-wrap:anywhere;font-weight:700}.reset-link-preview small{color:#68777b}.testimonial-guest{display:flex;align-items:center;gap:11px;min-width:170px}.testimonial-guest img{width:42px;height:42px;border-radius:50%;object-fit:cover;background:#edf0ed}.testimonial-comment{max-width:360px;white-space:normal;line-height:1.55;color:#4b5c60}.testimonial-rating{color:#b28c3e;font-weight:700;white-space:nowrap}.testimonial-rating i{font-size:.8em}
+.about-story-link{display:inline-flex;margin-top:18px;position:relative;top:8px}.services-page-hero{background-image:linear-gradient(90deg,rgba(7,30,37,.78),rgba(7,30,37,.24)),url('https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1920&q=80')}.services-section .services-heading{margin:0 auto 35px}.services-section .services-heading .eyebrow{color:var(--gold)}.services-section .services-heading h2{color:#fff;margin:8px 0 10px}.services-section .services-heading p{color:#b8c6c5;margin:0}.service-card.service-inactive{background:rgba(255,255,255,.035);border-color:rgba(240,214,118,.32)}.service-open-badge,.service-closed-badge{display:inline-flex;align-items:center;gap:7px;margin-top:17px;padding:7px 10px;border-radius:30px;font-size:.69rem;font-weight:700}.service-open-badge{color:#bce9d0;background:rgba(64,166,112,.13)}.service-closed-badge{color:#f0d676;background:rgba(240,214,118,.12)}

@@ -1,0 +1,33 @@
+@model List<TestimonialAdminItemViewModel>
+@{
+    ViewData["Title"] = "Müşteri Yorumları";
+    Layout = "_LayoutAdmin";
+}
+<section class="admin-page-heading"><div><span class="admin-kicker">MİSAFİR DENEYİMLERİ</span><h1>Müşteri yorumları</h1><p>Yorumların listesini görün ve sitede yayımlanma durumlarını yönetin.</p></div><span class="admin-count-large">@Model.Count yorum</span></section>
+@if (TempData["TestimonialMessage"] is string message) { <div class="admin-alert"><i class="fa-solid fa-circle-check"></i> @message</div> }
+<div class="card"><div class="card-header"><h2 class="card-title">Tüm yorumlar</h2></div><div class="card-body table-responsive">
+    @if (Model.Count == 0)
+    {
+        <div class="admin-empty"><i class="fa-regular fa-comment-dots"></i><h3>Henüz yorum bulunmuyor</h3><p>Veritabanındaki müşteri yorumları burada listelenecek.</p></div>
+    }
+    else
+    {
+        <table class="table"><thead><tr><th>MİSAFİR</th><th>YORUM</th><th>PUAN</th><th>TARİH</th><th>SİTEDE GÖRÜNÜRLÜK</th><th>İŞLEM</th></tr></thead><tbody>
+        @foreach (var row in Model)
+        {
+            var item = row.Testimonial;
+            <tr>
+                <td><div class="testimonial-guest">@if (!string.IsNullOrWhiteSpace(row.ProfileImageUrl)) { <img src="@row.ProfileImageUrl" alt="@row.CustomerName" /> }<div><strong>@row.CustomerName</strong><small class="table-subline">@row.CustomerEmail</small><small class="table-subline">@item.Title</small></div></div></td>
+                <td class="testimonial-comment">@item.Comment</td>
+                <td><span class="testimonial-rating">@item.Rating <i class="fa-solid fa-star"></i></span></td>
+                <td>@item.CreatedDate.ToString("dd.MM.yyyy")</td>
+                <td><span class="status-pill @(item.IsActive ? "status-approved" : "status-rejected")">@(item.IsActive ? "Yayında" : "Gizli")</span></td>
+                <td class="testimonial-admin-actions">
+                    <form asp-action="ToggleVisibility" method="post"><input type="hidden" name="id" value="@item.Id" /><button class="btn @(item.IsActive ? "btn-danger-soft" : "btn-primary") btn-sm" type="submit"><i class="fa-solid @(item.IsActive ? "fa-eye-slash" : "fa-eye")"></i> @(item.IsActive ? "Gizle" : "Yayımla")</button></form>
+                    <form asp-action="Delete" method="post" onsubmit="return confirm('Bu yorumu kalıcı olarak silmek istediğinize emin misiniz?');"><input type="hidden" name="id" value="@item.Id" /><button class="btn btn-danger-soft btn-sm" type="submit"><i class="fa-solid fa-trash"></i> Sil</button></form>
+                </td>
+            </tr>
+        }
+        </tbody></table>
+    }
+</div></div>

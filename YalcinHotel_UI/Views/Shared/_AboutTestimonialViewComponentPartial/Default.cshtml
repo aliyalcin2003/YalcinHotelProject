@@ -1,0 +1,8 @@
+@model IEnumerable<YalcinHotel_Entity.Testimonial>
+<section class="testimonial-section"><div class="section-heading"><span class="eyebrow">GÜZEL ANILAR</span><h2>Misafirlerimiz Ne Diyor?</h2><p>Yalçın Hotel Tahiti deneyimini konuklarımızdan dinleyin.</p></div><div class="testimonial-grid">
+@foreach (var item in Model ?? Enumerable.Empty<YalcinHotel_Entity.Testimonial>())
+{
+    <article class="testimonial-card"><div class="testimonial-stars">@for (var star = 0; star < Math.Clamp(item.Rating, 0, 5); star++){<i class="fa-solid fa-star"></i>}</div><p>&ldquo;@item.Comment&rdquo;</p><div class="testimonial-person">@if (!string.IsNullOrWhiteSpace(item.ImageUrl)){<img src="@item.ImageUrl" alt="@item.ClientName" loading="lazy" />}<div><strong>@item.ClientName</strong><span>@item.Title</span></div></div></article>
+}
+@if (Model == null || !Model.Any()) { <div class="empty-state"><i class="fa-regular fa-comment-dots"></i><h3>Güzel yorumlar yakında</h3><p>Misafir deneyimleri burada paylaşılacak.</p></div> }
+</div></section>

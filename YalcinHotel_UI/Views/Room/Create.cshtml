@@ -1,0 +1,16 @@
+@model CreateRoomDTO
+@{
+    ViewData["Title"] = "Yeni oda";
+    Layout = "_LayoutAdmin";
+}
+<section class="admin-page-heading"><div><span class="admin-kicker">KONAKLAMA YÖNETİMİ</span><h1>Yeni oda ekle</h1><p>Oda bilgileri, fiyatı ve internet görseli.</p></div></section>
+<div class="card admin-form-card"><form asp-action="Create" method="post">
+    <div class="card-body"><div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group"><label asp-for="Title">Oda adı</label><input asp-for="Title" class="form-control" placeholder="Örn. Overwater Ocean Villa" /><span asp-validation-for="Title" class="text-danger"></span></div>
+        <div class="form-group"><label asp-for="Description">Açıklama</label><textarea asp-for="Description" class="form-control" rows="4" placeholder="Odanın öne çıkan özellikleri"></textarea><span asp-validation-for="Description" class="text-danger"></span></div>
+        <div class="admin-form-grid"><div class="form-group"><label asp-for="Price">Gecelik fiyat</label><input asp-for="Price" class="form-control" type="number" min="0" step="0.01" /><span asp-validation-for="Price" class="text-danger"></span></div><div class="form-group"><label asp-for="Capacity">Kişi kapasitesi</label><input asp-for="Capacity" class="form-control" type="number" min="1" max="10" /><span asp-validation-for="Capacity" class="text-danger"></span></div></div>
+        <div class="form-group"><label asp-for="ImageUrl">Oda görseli URL</label><input asp-for="ImageUrl" class="form-control" type="url" placeholder="https://..." /><span asp-validation-for="ImageUrl" class="text-danger"></span><small class="form-help">Görseller internet adresinden kullanılır; dosya yükleme klasörü gerekmez.</small></div>
+        <div class="admin-checks"><label class="admin-check"><input asp-for="IsAvailable" /> Rezervasyona açık</label><label class="admin-check"><input asp-for="IsPopular" /> Popüler odalarda göster</label><label class="admin-check"><input asp-for="IsActive" /> Web sitesinde yayınla</label></div>
+    </div>
+    <div class="card-footer"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Odayı kaydet</button> <a asp-action="Index" class="btn btn-secondary">Vazgeç</a></div>
+</form></div>

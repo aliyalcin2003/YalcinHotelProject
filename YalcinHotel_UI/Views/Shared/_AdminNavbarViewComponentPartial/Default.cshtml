@@ -1,0 +1,12 @@
+<header class="admin-topbar">
+    <div class="admin-topbar-left">
+        <button class="admin-menu-toggle" type="button" aria-label="Menüyü aç" data-admin-menu-toggle><i class="fa-solid fa-bars"></i></button>
+        <span class="admin-breadcrumb">YALÇIN HOTEL <i class="fa-solid fa-chevron-right"></i> <strong>YÖNETİM</strong></span>
+    </div>
+    <div class="admin-topbar-right">
+        <span class="admin-live"><i></i> Sistem hazır</span>
+        <a class="admin-site-link" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-arrow-up-right-from-square"></i> Siteyi görüntüle</a>
+        <div class="admin-avatar" aria-label="Yönetici"><i class="fa-solid fa-user"></i></div>
+        <form asp-controller="Account" asp-action="Logout" method="post" class="admin-logout-form"><button type="submit" class="admin-logout-button" title="Çıkış yap" aria-label="Çıkış yap"><i class="fa-solid fa-arrow-right-from-bracket"></i></button></form>
+    </div>
+</header>

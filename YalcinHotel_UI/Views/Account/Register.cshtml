@@ -1,0 +1,24 @@
+@model AccountRegisterViewModel // Bu sayfa, kullanıcıların Yalçın Hotel web sitesinde hesap oluşturmasını sağlayan bir Razor View sayfasıdır. Model olarak, AccountRegisterViewModel sınıfı kullanılır. Bu model, kullanıcının adını, e-posta adresini, şifresini ve şifre tekrarını içerir. Bu bilgiler, kullanıcıya hesap oluşturma formu aracılığıyla sağlanır ve sunucuya gönderilir. Sunucu tarafında, bu bilgiler doğrulanır ve yeni bir kullanıcı hesabı oluşturulur.
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+<section class="account-page">
+    <div class="account-card">
+        <span class="eyebrow">YALÇIN HOTEL AİLESİ</span>
+        <h1>Hesabınızı oluşturun.</h1>
+        <p class="account-lead">Rezervasyon taleplerinizi hesabınızdan kolayca takip edin.</p>
+        <form asp-action="Register" method="post" class="account-form">
+            @Html.AntiForgeryToken() 
+            <div asp-validation-summary="ModelOnly" class="field-validation-error"></div>
+            <div class="field"><label asp-for="NameSurname">Ad soyad</label><input asp-for="NameSurname" autocomplete="name" placeholder="Adınız Soyadınız" /><span asp-validation-for="NameSurname"></span></div>
+            <div class="field"><label asp-for="Email">E-posta adresi</label><input asp-for="Email" type="email" autocomplete="email" placeholder="ornek@mail.com" /><span asp-validation-for="Email"></span></div>
+            <div class="field"><label asp-for="Password">Şifre</label><input asp-for="Password" autocomplete="new-password" placeholder="En az 8 karakter" /><span asp-validation-for="Password"></span></div>
+            <div class="field"><label asp-for="ConfirmPassword">Şifre tekrarı</label><input asp-for="ConfirmPassword" autocomplete="new-password" placeholder="Şifrenizi tekrar yazın" /><span asp-validation-for="ConfirmPassword"></span></div>
+            <button class="btn btn-gold" type="submit">Hesap oluştur <i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+        <div class="account-switch">Zaten hesabınız var mı? <a asp-action="Login">Giriş yapın</a></div>
+        <p class="admin-registration-note">Yönetici hesabı için <strong>appsettings.json</strong> içindeki Admin:Email adresini kullanın.</p>
+    </div>
+    <div class="account-aside"><span class="eyebrow">TAHITI RESORT &amp; SPA</span><h2>Yeni anılar<br />sizi bekliyor.</h2><p>Okyanus esintisi, konfor ve özenli misafirperverlik.</p></div>
+</section>
+

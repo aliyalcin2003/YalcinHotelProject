@@ -1,0 +1,6 @@
+@YalcinHotel_UI_HostAddress = http://localhost:5062
+
+GET {{YalcinHotel_UI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

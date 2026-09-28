@@ -1,0 +1,25 @@
+@model EmployeeCreateViewModel
+@{
+    ViewData["Title"] = "Çalışan Ekle";
+    Layout = "_LayoutAdmin";
+}
+<section class="admin-page-heading"><div><span class="admin-kicker">OTEL EKİBİ</span><h1>Çalışan ekle</h1><p>Çalışan bilgileri ana sayfadaki ekip bölümünde gösterilir.</p></div><a class="btn btn-outline" asp-action="Index"><i class="fa-solid fa-arrow-left"></i> Listeye dön</a></section>
+<div class="card admin-form-card"><div class="card-header"><h2 class="card-title">Çalışan bilgileri</h2></div><div class="card-body">
+    @if (ViewBag.Abouts == null || !((IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)ViewBag.Abouts).Any())
+    {
+        <div class="admin-alert">Çalışan eklemek için önce aktif bir Hakkımızda kaydı bulunmalıdır.</div>
+    }
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        <div class="card-body"><div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="admin-form-grid">
+                <div class="form-group"><label asp-for="Name">Ad</label><input asp-for="Name" class="form-control" /><span asp-validation-for="Name" class="text-danger"></span></div>
+                <div class="form-group"><label asp-for="Surname">Soyad</label><input asp-for="Surname" class="form-control" /><span asp-validation-for="Surname" class="text-danger"></span></div>
+                <div class="form-group"><label asp-for="Title">Unvan</label><input asp-for="Title" class="form-control" placeholder="Örn. Misafir İlişkileri" /><span asp-validation-for="Title" class="text-danger"></span></div>
+                <div class="form-group"><label asp-for="AboutId">Bağlı Hakkımızda kaydı</label><select asp-for="AboutId" asp-items="ViewBag.Abouts" class="form-control"><option value="0">Kayıt seçin</option></select><span asp-validation-for="AboutId" class="text-danger"></span></div>
+            </div>
+            <div class="form-group"><label asp-for="ImageUrl">Fotoğraf adresi</label><input asp-for="ImageUrl" type="url" class="form-control" placeholder="https://..." /><span asp-validation-for="ImageUrl" class="text-danger"></span><small class="form-help">Fotoğraf internet adresinden gösterilir; dosya yüklemesi yapılmaz.</small></div>
+        </div>
+        <div class="card-footer"><button class="btn btn-primary" type="submit"><i class="fa-solid fa-user-plus"></i> Çalışanı ekle</button></div>
+    </form>
+</div></div>

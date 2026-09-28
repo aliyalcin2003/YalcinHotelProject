@@ -1,0 +1,13 @@
+@model ReservationConfirmationViewModel
+@{
+    ViewData["Title"] = "Rezervasyon Talebiniz";
+}
+<section class="reservation-success">
+    <span class="success-icon"><i class="fa-solid fa-check"></i></span>
+    <span class="eyebrow">TAHITI'DE GÖRÜŞMEK ÜZERE</span>
+    <h1>Rezervasyon talebiniz iletilmiştir!</h1>
+    <p class="reservation-received-message">Rezervasyon talebiniz başarıyla alınmış ve işleme konmuştur. Otel ekibi karar verdiğinde kabul veya ret durumu profilinizde görünecektir.</p>
+    <div class="reservation-received-summary"><strong>Talep #@Model.ReservationId</strong><span>@Model.CheckIn.ToString("dd.MM.yyyy") – @Model.CheckOut.ToString("dd.MM.yyyy")</span><span>@Model.GuestCount misafir</span></div>
+    <a class="btn btn-outline" asp-controller="Account" asp-action="Profile">Rezervasyonlarımı gör <i class="fa-solid fa-arrow-right"></i></a>
+    <a class="btn btn-gold" asp-controller="Home" asp-action="Index">Ana sayfaya dön <i class="fa-solid fa-arrow-right"></i></a>
+</section>

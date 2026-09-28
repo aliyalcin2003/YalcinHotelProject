@@ -1,0 +1,21 @@
+@model CustomerManagementViewModel // CustomerManagementViewModel sınıfı, kayıtlı müşterilerin bilgilerini ve rezervasyon sayılarını içeren bir modeldir. Bu model, yönetici panelinde müşteri yönetimi sayfasında kullanılmak üzere tasarlanmıştır. Model, RegisteredCustomerRowViewModel sınıfının bir listesi olan Customers özelliğini içerir. Her bir RegisteredCustomerRowViewModel nesnesi, bir müşterinin adını, e-posta adresini, profil resmini, oluşturulma tarihini ve rezervasyon sayısını temsil eder. Bu bilgiler, kullanıcıya kayıtlı müşteriler hakkında bilgi sağlamak için kullanılabilir.
+@{
+    ViewData["Title"] = "Müşteri Yönetimi";
+    Layout = "_LayoutAdmin";
+}
+<section class="admin-page-heading"><div><span class="admin-kicker">MİSAFİR HESAPLARI</span><h1>Müşteri yönetimi</h1><p>Otel sitesinde hesap açan müşterileri ve rezervasyon sayılarını görüntüleyin.</p></div><a class="btn btn-primary" asp-action="Staying"><i class="fa-solid fa-person-shelter"></i> Şu an konaklayanlar</a></section>
+<div class="card"><div class="card-header"><h2 class="card-title">Kayıtlı müşteriler</h2><span class="admin-count">@Model.Customers.Count hesap</span></div><div class="card-body table-responsive">
+    @if (Model.Customers.Count == 0)
+    {
+        <div class="admin-empty"><i class="fa-solid fa-users"></i><h3>Henüz müşteri hesabı yok</h3><p>Kayıt olan müşteriler bu listede görünür.</p></div>
+    }
+    else
+    {
+        <table class="table"><thead><tr><th>MÜŞTERİ</th><th>KAYIT TARİHİ</th><th>REZERVASYON</th></tr></thead><tbody>
+                @foreach (var customer in Model.Customers) // Bu döngü, Model.Customers listesindeki her bir müşteri için bir tablo satırı oluşturur. Her bir müşteri için, ad, e-posta, profil resmi URL'si, oluşturulma tarihi ve rezervasyon sayısı gibi bilgileri görüntüler. Bu bilgiler, kullanıcıya kayıtlı müşteriler hakkında bilgi sağlamak için kullanılabilir.
+        {
+            <tr><td><div class="testimonial-guest">@if (!string.IsNullOrWhiteSpace(customer.ProfileImageUrl)) { <img src="@customer.ProfileImageUrl" alt="@customer.Name" /> }<div><strong>@customer.Name</strong><small class="table-subline">@customer.Email</small><small class="table-subline">Müşteri #@customer.Id</small></div></div></td><td>@customer.CreatedDate.ToString("dd.MM.yyyy")</td><td>@customer.ReservationCount</td></tr>
+        }
+        </tbody></table>
+    }
+</div></div>

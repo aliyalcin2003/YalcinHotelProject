@@ -1,0 +1,23 @@
+@model List<ResultAboutDTO>
+@{ var about = Model?.FirstOrDefault(); }
+<section class="about-section" id="about">
+    <div class="about-container">
+        <div class="about-text">
+            <span class="eyebrow">ADA RUHUNU KEŞFEDİN</span>
+            <h2>@(about?.Title ?? "Doğanın içinde, size özel bir dünya")</h2>
+            <p>@(about?.Description ?? "Yalçın Hotel Tahiti olarak misafirlerimize turkuaz suların, tropikal doğanın ve özenli hizmetin buluştuğu unutulmaz bir konaklama sunuyoruz.")</p>
+            <div class="about-features">
+                <div class="feature-item"><i class="fa-solid fa-water"></i> Okyanus manzaralı konaklama</div>
+                <div class="feature-item"><i class="fa-solid fa-spa"></i> Spa ve wellness deneyimi</div>
+                <div class="feature-item"><i class="fa-solid fa-utensils"></i> Seçkin ada lezzetleri</div>
+            </div>
+            <a class="btn about-story-link" asp-controller="Home" asp-action="Services">Hizmetlerimize göz atın <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="about-image">
+            @if (!string.IsNullOrWhiteSpace(about?.ImageUrl))
+            { <img src="@about.ImageUrl" alt="Yalçın Hotel Tahiti" loading="lazy" /> }
+            else
+            { <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1200&q=80" alt="Tahiti kıyısında resort" loading="lazy" /> }
+        </div>
+    </div>
+</section>

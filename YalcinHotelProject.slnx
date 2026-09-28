@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="YalcinHotelDAL/YalcinHotel_DAL.csproj" />
+  <Project Path="YalcinHotel_BLL/YalcinHotel_BLL.csproj" />
+  <Project Path="YalcinHotel_Entity/YalcinHotel_Entity.csproj" />
+  <Project Path="YalcinHotel_UI/YalcinHotel_UI.csproj" Id="3a5a8ad4-7989-446e-afbd-0991ed2a3fed" />
+</Solution>

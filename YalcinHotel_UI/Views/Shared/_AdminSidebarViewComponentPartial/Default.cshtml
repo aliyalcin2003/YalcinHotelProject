@@ -1,0 +1,19 @@
+<aside class="admin-sidebar" data-admin-sidebar>
+    <a class="admin-brand" asp-controller="Admin" asp-action="Index"><span class="admin-brand-mark"><i class="fa-solid fa-water"></i></span><span><strong>YALÇIN</strong><small>TAHITI RESORT</small></span></a>
+    <div class="sidebar-caption">ÇALIŞMA ALANI</div>
+    <nav class="admin-nav" aria-label="Yönetim menüsü">
+        <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Admin" ? "active" : "")" asp-controller="Admin" asp-action="Index"><i class="fa-solid fa-chart-pie"></i><span>Genel bakış</span><i class="fa-solid fa-chevron-right nav-arrow"></i></a>
+        <div class="sidebar-caption sidebar-caption-spaced">İÇERİK YÖNETİMİ</div>
+        <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Room" ? "active" : "")" asp-controller="Room" asp-action="Index"><i class="fa-solid fa-bed"></i><span>Odalar</span></a>
+        <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Reservation" ? "active" : "")" asp-controller="Reservation" asp-action="Index"><i class="fa-regular fa-calendar-check"></i><span>Rezervasyonlar</span></a>
+        <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Testimonial" ? "active" : "")" asp-controller="Testimonial" asp-action="Index"><i class="fa-regular fa-comment-dots"></i><span>Müşteri yorumları</span></a>
+        <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Customer" && ViewContext.RouteData.Values["action"]?.ToString() != "Staying" ? "active" : "")" asp-controller="Customer" asp-action="Index"><i class="fa-solid fa-users"></i><span>Müşteri yönetimi</span></a>
+        <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Customer" && ViewContext.RouteData.Values["action"]?.ToString() == "Staying" ? "active" : "")" asp-controller="Customer" asp-action="Staying"><i class="fa-solid fa-person-shelter"></i><span>Konaklayan misafirler</span></a>
+        <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Service" ? "active" : "")" asp-controller="Service" asp-action="Index"><i class="fa-solid fa-spa"></i><span>Hizmet yönetimi</span></a>
+        <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Employee" ? "active" : "")" asp-controller="Employee" asp-action="Index"><i class="fa-solid fa-user-group"></i><span>Çalışan yönetimi</span></a>
+        <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Slider" ? "active" : "")" asp-controller="Slider" asp-action="Index"><i class="fa-regular fa-images"></i><span>Slider görselleri</span></a>
+    </nav>
+    <div class="sidebar-spacer"></div>
+    <div class="sidebar-resort-card"><span class="eyebrow">ADA NOTU</span><p>Her güzel yolculuk, doğru yerde başlar.</p><span class="sidebar-palm"><i class="fa-solid fa-sun"></i></span></div>
+    <a class="sidebar-site-link" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-arrow-up-right-from-square"></i> Otel sitesine dön</a>
+</aside>

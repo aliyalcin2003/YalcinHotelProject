@@ -1,0 +1,56 @@
+@model CreateReservationDTO
+@{
+    ViewData["Title"] = "Rezervasyon";
+}
+<section class="page-hero">
+    <span class="eyebrow">TAHITI'DE YERİNİZİ AYIRIN</span>
+    <h1>Rezervasyon Yapın</h1>
+    <p>Konaklama bilgilerinizi paylaşın; size özel planlamayı birlikte yapalım.</p>
+</section>
+
+<section class="booking-section" id="booking">
+    <h2>Konaklama Rezervasyon Formu</h2>
+    <p>Talebiniz ekibimize ulaşır; rezervasyonunuz onaylandığında sizinle iletişim kurarız.</p>
+    <form id="reservationForm" asp-controller="Reservation" asp-action="Create" method="post" class="booking-form">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="All" class="field-validation-error field-full"></div>
+        <div class="field">
+            <label asp-for="Name">Adınız Soyadınız</label>
+            <input asp-for="Name" autocomplete="name" readonly />
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Email">E-posta adresiniz</label>
+            <input asp-for="Email" type="email" autocomplete="email" readonly />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Phone">Telefon numaranız</label>
+            <input asp-for="Phone" type="tel" autocomplete="tel" placeholder="+90 ..." />
+            <span asp-validation-for="Phone"></span>
+        </div>
+        <div class="field">
+            <label asp-for="RoomId">Konaklama seçeneği</label>
+            <select asp-for="RoomId" asp-items="ViewBag.Rooms"><option value="0">Oda seçin</option></select>
+            <span asp-validation-for="RoomId"></span>
+        </div>
+        <div class="field">
+            <label asp-for="CheckIn"><i class="fa-solid fa-calendar-days"></i> Giriş tarihi</label>
+            <input asp-for="CheckIn" type="date" min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            <span asp-validation-for="CheckIn"></span>
+        </div>
+        <div class="field">
+            <label asp-for="CheckOut"><i class="fa-solid fa-calendar-days"></i> Çıkış tarihi</label>
+            <input asp-for="CheckOut" type="date" min="@DateTime.Today.AddDays(1).ToString("yyyy-MM-dd")" />
+            <span asp-validation-for="CheckOut"></span>
+        </div>
+        <div class="field field-full">
+            <label asp-for="GuestCount"><i class="fa-solid fa-user-group"></i> Misafir sayısı</label>
+            <select asp-for="GuestCount">
+                <option value="1">1 Kişi</option><option value="2">2 Kişi</option><option value="3">3 Kişi</option><option value="4">4 Kişi</option>
+            </select>
+            <span asp-validation-for="GuestCount"></span>
+        </div>
+        <button type="submit" class="btn btn-gold"><i class="fa-regular fa-paper-plane"></i> Rezervasyon talebi gönder</button>
+    </form>
+</section>

@@ -1,0 +1,22 @@
+@model List<Service>
+@{
+    ViewData["Title"] = "Hizmet Yönetimi";
+    Layout = "_LayoutAdmin";
+}
+<section class="admin-page-heading"><div><span class="admin-kicker">OTEL HİZMETLERİ</span><h1>Hizmet yönetimi</h1><p>Hizmetlerin aktiflik durumunu ve sitede gösterilen bilgilerini yönetin.</p></div><a class="btn btn-primary" asp-action="Create"><i class="fa-solid fa-plus"></i> Hizmet ekle</a></section>
+@if (TempData["ServiceMessage"] is string message) { <div class="admin-alert"><i class="fa-solid fa-circle-check"></i> @message</div> }
+<div class="card"><div class="card-header"><h2 class="card-title">Tüm hizmetler</h2><span class="admin-count">@Model.Count hizmet</span></div><div class="card-body table-responsive">
+    @if (Model.Count == 0)
+    {
+        <div class="admin-empty"><i class="fa-solid fa-spa"></i><h3>Henüz hizmet eklenmemiş</h3><p>Hizmet eklediğinizde otel sitesinde gösterilebilir.</p></div>
+    }
+    else
+    {
+        <table class="table"><thead><tr><th>HİZMET</th><th>AÇIKLAMA</th><th>WEB SİTESİ</th><th>İŞLEM</th></tr></thead><tbody>
+        @foreach (var service in Model)
+        {
+            <tr><td><div class="service-admin-title"><i class="@service.IconUrl"></i><strong>@service.Title</strong></div></td><td class="testimonial-comment">@service.Description</td><td><span class="status-pill @(service.IsActive ? "status-approved" : "status-rejected")">@(service.IsActive ? "Aktif" : "Pasif")</span></td><td><div class="table-actions"><a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@service.Id"><i class="fa-solid fa-pen"></i> Düzenle</a><form asp-action="ToggleStatus" method="post"><input type="hidden" name="id" value="@service.Id" /><button class="btn @(service.IsActive ? "btn-danger-soft" : "btn-primary") btn-sm" type="submit"><i class="fa-solid @(service.IsActive ? "fa-eye-slash" : "fa-eye")"></i> @(service.IsActive ? "Pasifleştir" : "Aktifleştir")</button></form></div></td></tr>
+        }
+        </tbody></table>
+    }
+</div></div>

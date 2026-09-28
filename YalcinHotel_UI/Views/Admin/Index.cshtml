@@ -1,0 +1,47 @@
+@model AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Genel bakış";
+    Layout = "_LayoutAdmin";
+}
+
+<section class="dashboard-heading">
+    <div>
+        <span class="admin-kicker"><i class="fa-solid fa-sun"></i> TAHITI RESORT &amp; SPA</span>
+        <h1>Günaydın, <em>Yalçın Hotel.</em></h1>
+        <p>Otelinizin bugünkü görünümüne ve içeriklerine buradan göz atın.</p>
+    </div>
+    <div class="dashboard-date"><i class="fa-regular fa-calendar"></i><span>@DateTime.Now.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("tr-TR"))</span></div>
+</section>
+
+<section class="dashboard-hero">
+    <div class="dashboard-hero-copy">
+        <span class="hero-overline">ADA RİTMİNDE, HER ŞEY YOLUNDA</span>
+        <h2>Misafir deneyimi<br /><strong>detaylarda saklı.</strong></h2>
+        <p>İçeriklerinizi güncel tutun, Yalçın Hotel'in Tahiti ruhunu her ziyarette yaşatın.</p>
+        <a class="admin-hero-button" asp-controller="Home" asp-action="Index">Canlı siteyi görüntüle <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+    </div>
+    <div class="dashboard-hero-art" aria-hidden="true"><span class="sun-disc"></span><span class="palm-leaf palm-one"></span><span class="palm-leaf palm-two"></span><span class="sea-line sea-one"></span><span class="sea-line sea-two"></span><span class="sea-line sea-three"></span></div>
+    <div class="dashboard-hero-stamp"><i class="fa-solid fa-water"></i><span>TAHITI<br />ISLAND LIFE</span></div>
+</section>
+
+<section class="stats-section" aria-labelledby="overview-title">
+    <div class="stats-heading"><div><span class="admin-kicker">OTELİNİZİN ÖZETİ</span><h2 id="overview-title">Genel durum</h2></div><span class="stats-note"><i class="fa-solid fa-circle-check"></i> Veriler güncel</span></div>
+    <div class="stats-grid">
+        <article class="stat-card"><div class="stat-card-top"><span class="stat-icon"><i class="fa-solid fa-bed"></i></span><span class="stat-caption">KONAKLAMA</span></div><strong>@Model.ActiveRoomCount</strong><h3>Aktif ve müsait oda</h3><span class="stat-foot">Şu an rezervasyona açık</span></article>
+        <article class="stat-card"><div class="stat-card-top"><span class="stat-icon"><i class="fa-regular fa-calendar-check"></i></span><span class="stat-caption">REZERVASYON</span></div><strong>@Model.PendingReservationCount</strong><h3>Bekleyen rezervasyon</h3><span class="stat-foot">Yanıt bekleyen talepler</span></article>
+        <article class="stat-card"><div class="stat-card-top"><span class="stat-icon"><i class="fa-solid fa-user-group"></i></span><span class="stat-caption">MİSAFİRLER</span></div><strong>@Model.CustomerCount</strong><h3>Kayıtlı misafir</h3><span class="stat-foot">Toplam @Model.ReservationCount rezervasyon</span></article>
+        <article class="stat-card"><div class="stat-card-top"><span class="stat-icon"><i class="fa-regular fa-envelope"></i></span><span class="stat-caption">GELEN KUTUSU</span></div><strong>@Model.UnreadContactCount</strong><h3>Okunmamış mesaj</h3><span class="stat-foot">İlginiz bekleyen iletişim</span></article>
+        <article class="stat-card"><div class="stat-card-top"><span class="stat-icon"><i class="fa-solid fa-spa"></i></span><span class="stat-caption">HİZMETLER</span></div><strong>@Model.ActiveServiceCount</strong><h3>Aktif hizmet</h3><span class="stat-foot">Misafirlerinize sunduklarınız</span></article>
+        <article class="stat-card"><div class="stat-card-top"><span class="stat-icon"><i class="fa-solid fa-user-tie"></i></span><span class="stat-caption">EKİP</span></div><strong>@Model.ActiveEmployeeCount</strong><h3>Aktif ekip üyesi</h3><span class="stat-foot">Hizmet veren çalışma arkadaşları</span></article>
+        <article class="stat-card"><div class="stat-card-top"><span class="stat-icon"><i class="fa-regular fa-images"></i></span><span class="stat-caption">GÖRSELLER</span></div><strong>@Model.ActiveSliderCount</strong><h3>Yayındaki görsel</h3><span class="stat-foot">Site sayfalarında görüntüleniyor</span></article>
+        <article class="stat-card"><div class="stat-card-top"><span class="stat-icon"><i class="fa-regular fa-comment-dots"></i></span><span class="stat-caption">GERİ BİLDİRİM</span></div><strong>@Model.ActiveTestimonialCount</strong><h3>Misafir yorumu</h3><span class="stat-foot">Paylaşılan konuk deneyimi</span></article>
+    </div>
+</section>
+
+<section class="admin-shortcuts">
+    <div class="shortcut-copy"><span class="admin-kicker">HIZLI ERİŞİM</span><h2>Bir sonraki adımınız ne?</h2><p>Odaları, rezervasyon taleplerini ve otel içeriğini tek noktadan yönetin.</p></div>
+    <div class="shortcut-actions">
+        <a class="shortcut-button shortcut-primary" asp-controller="Room" asp-action="Index"><i class="fa-solid fa-bed"></i><span><strong>Odaları yönet</strong><small>Oda ekle, düzenle ve yayından kaldır</small></span><i class="fa-solid fa-arrow-right"></i></a>
+        <a class="shortcut-button" asp-controller="Reservation" asp-action="Index"><i class="fa-regular fa-calendar-check"></i><span><strong>Rezervasyonları incele</strong><small>Misafir taleplerine yanıt ver</small></span><i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+</section>

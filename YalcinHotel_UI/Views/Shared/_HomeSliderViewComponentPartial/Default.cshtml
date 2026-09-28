@@ -1,0 +1,10 @@
+@model ResultSliderDTO
+<section class="hero" style="@(Model == null ? null : $"background-image:linear-gradient(90deg,rgba(6,32,39,.75),rgba(6,32,39,.18)),url('{Model.ImageUrl1}')")">
+    <div class="hero-content">
+        <span class="eyebrow"><i class="fa-solid fa-sun"></i> TAHITI RESORT &amp; SPA</span>
+        <h1>@(Model?.Title ?? "Cennetin Kalbinde Lüks Bir Deneyim")</h1>
+        <p>@(Model?.Description ?? "Tahiti'nin muhteşem turkuaz sularında 5 yıldızlı konforu keşfedin.")</p>
+        <a class="btn btn-gold" asp-controller="Reservation" asp-action="Create">Hemen Rezervasyon Yap <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <a class="hero-scroll" href="#rooms"><span></span> AŞAĞI KAYDIR</a>
+</section>

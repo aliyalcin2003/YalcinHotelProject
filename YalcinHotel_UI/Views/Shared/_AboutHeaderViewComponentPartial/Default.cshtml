@@ -1,0 +1,6 @@
+@model ResultSliderDTO
+<section class="page-hero" style="@(Model == null ? null : $"background-image:linear-gradient(90deg,rgba(7,30,37,.78),rgba(7,30,37,.2)),url('{Model.ImageUrl1}')")">
+    <span class="eyebrow">YALÇIN HOTEL · TAHITI</span>
+    <h1>@(Model?.Title ?? "Tahiti'nin Kalbinde Eşsiz Bir Cennet")</h1>
+    <p>@(Model?.Description ?? "Vizyonumuz ve misyonumuz: doğanın lüksle buluştuğu yerde kusursuz bir huzur sunmak.")</p>
+</section>

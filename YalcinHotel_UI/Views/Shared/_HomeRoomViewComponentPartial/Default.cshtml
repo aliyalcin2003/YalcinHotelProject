@@ -1,0 +1,36 @@
+@model HomeRoomsViewModel
+@{
+    var isRoomsPage = string.Equals(ViewContext.RouteData.Values["action"]?.ToString(), "Rooms", StringComparison.OrdinalIgnoreCase);
+    var rooms = Model?.Rooms ?? new List<ResultRoomDTO>();
+    var showPopularCarousel = Model?.PopularOnly == true;
+}
+<section class="rooms-section" id="rooms">
+    <div class="section-heading @(showPopularCarousel ? "popular-room-heading" : "")">
+        <div><span class="eyebrow">@(showPopularCarousel ? "ÖNE ÇIKAN KONAKLAMA" : "KONAKLAMA")</span><h2>@(showPopularCarousel ? "Popüler odalarımız" : isRoomsPage ? "Tüm Odalarımız ve Suitlerimiz" : "Özel Konaklama Seçenekleri")</h2><p>@(showPopularCarousel ? "Misafirlerimizin en çok tercih ettiği Tahiti kaçış noktalarını keşfedin." : isRoomsPage ? "Okyanus manzaralı villalarımızı ve Tahiti süitlerimizi keşfedin." : "Okyanus kıyısında size özel bir kaçış noktası.")</p></div>
+        @if (showPopularCarousel && rooms.Count > 1)
+        {
+            <div class="room-carousel-controls" aria-label="Popüler odaları kaydır">
+                <button type="button" data-room-prev aria-label="Önceki odalar"><i class="fa-solid fa-arrow-left"></i></button>
+                <button type="button" data-room-next aria-label="Sonraki odalar"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        }
+    </div>
+    @if (rooms.Count > 0)
+    {
+        <div class="@(showPopularCarousel ? "room-carousel" : "")" @(showPopularCarousel ? "data-room-carousel" : "")>
+            <div class="@(showPopularCarousel ? "room-carousel-track" : "room-grid")" @(showPopularCarousel ? "data-room-track" : "")>
+            @foreach (var item in rooms)
+            {
+                <article class="room-card">
+                    <div class="room-image-wrap">@if (!string.IsNullOrWhiteSpace(item.ImageUrl)) { <img src="@item.ImageUrl" alt="@item.Title" loading="lazy" /> }<span class="room-tag">@(showPopularCarousel ? "MİSAFİR FAVORİSİ" : "TAHITI COLLECTION")</span></div>
+                    <div class="room-info"><div class="room-meta"><span><i class="fa-solid fa-user-group"></i> @item.Capacity kişi</span><span><i class="fa-solid fa-star"></i> 5.0</span></div><h3>@item.Title</h3><p>@item.Description</p><div class="room-card-bottom"><strong class="price">@item.Price.ToString("C0") <small>/ gece</small></strong><a class="room-link" asp-controller="Reservation" asp-action="Create" asp-route-roomId="@item.Id">Odayı seç <i class="fa-solid fa-arrow-right"></i></a></div></div>
+                </article>
+            }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="empty-state"><i class="fa-solid fa-water"></i><h3>@(showPopularCarousel ? "Popüler odalar yakında" : "Odalarımız hazırlanıyor")</h3><p>@(showPopularCarousel ? "Yönetim panelinden popüler olarak işaretlenen odalar burada görünecek." : "Rezervasyon seçeneklerimiz yakında burada olacak.")</p></div>
+    }
+</section>

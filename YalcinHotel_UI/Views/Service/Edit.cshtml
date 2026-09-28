@@ -1,0 +1,11 @@
+@model ServiceManagementViewModel
+@{
+    ViewData["Title"] = "Hizmet Düzenle";
+    Layout = "_LayoutAdmin";
+}
+<section class="admin-page-heading"><div><span class="admin-kicker">OTEL HİZMETLERİ</span><h1>Hizmeti düzenle</h1><p>Hizmet bilgilerini güncelleyin.</p></div><a class="btn btn-outline" asp-action="Index"><i class="fa-solid fa-arrow-left"></i> Listeye dön</a></section>
+<div class="card admin-form-card"><form asp-action="Edit" method="post">@Html.AntiForgeryToken()<input asp-for="Id" type="hidden" /><div class="card-body"><div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group"><label asp-for="Title">Hizmet adı</label><input asp-for="Title" class="form-control" /><span asp-validation-for="Title" class="text-danger"></span></div>
+    <div class="form-group"><label asp-for="Description">Açıklama</label><textarea asp-for="Description" class="form-control" rows="4"></textarea><span asp-validation-for="Description" class="text-danger"></span></div>
+    <div class="form-group"><label asp-for="IconUrl">Font Awesome ikon sınıfı</label><input asp-for="IconUrl" class="form-control" placeholder="fa-solid fa-spa" /><span asp-validation-for="IconUrl" class="text-danger"></span></div>
+</div><div class="card-footer"><button class="btn btn-primary" type="submit"><i class="fa-solid fa-check"></i> Değişiklikleri kaydet</button></div></form></div>

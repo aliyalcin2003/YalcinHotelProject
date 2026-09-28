@@ -1,0 +1,7 @@
+@{ ViewData["Title"] = "Iletisim"; }
+@await Component.InvokeAsync("_ContactHeaderViewComponentPartial")
+@if (TempData["ContactMessage"] is string contactMessage)
+{
+    <div class="site-alert" role="status"><i class="fa-solid fa-circle-check"></i> @contactMessage</div>
+}
+@await Component.InvokeAsync("_ContactDetailViewComponentPartial")

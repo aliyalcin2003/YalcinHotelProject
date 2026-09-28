@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using YalcinHotel_DAL.Abstract;
+using YalcinHotel_Entity;
+
+namespace YalcinHotel_DAL.Concrete.EfCore
+{
+    public class EfCoreRoomDal : EfCoreGenericRepository<Room, DataContext>, IRoomDal
+    {
+
+    }
+}

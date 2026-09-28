@@ -1,0 +1,14 @@
+@model IEnumerable<YalcinHotel_Entity.Employee>
+<section class="team-section">
+    <div class="section-heading"><span class="eyebrow">SİZİN İÇİN BURADAYIZ</span><h2>Değerli Ekibimiz</h2><p>Tatilinizi kusursuz kılmak için görev yapan profesyonel kadromuz.</p></div>
+    <div class="team-grid">
+        @foreach (var item in Model ?? Enumerable.Empty<YalcinHotel_Entity.Employee>())
+        {
+            <article class="team-card">
+                @if (!string.IsNullOrWhiteSpace(item.ImageUrl)) { <img src="@item.ImageUrl" alt="@item.Name @item.Surname" /> }
+                <h3>@item.Name @item.Surname</h3>
+                <p>@item.Title</p>
+            </article>
+        }
+    </div>
+</section>

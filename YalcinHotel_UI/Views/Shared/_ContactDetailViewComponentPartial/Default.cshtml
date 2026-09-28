@@ -1,0 +1,24 @@
+@model CreateContactDTO
+<section class="contact-section">
+    <div class="contact-intro"><span class="eyebrow">BORA BORA, TAHITI</span><h2>Bize Ulaşın</h2><p>Cennet adadaki tatilinizi planlamak için ekibimiz 7/24 hizmetinizde.</p></div>
+    <div class="contact-layout">
+        <aside class="contact-details"><h3>Yolculuğunuz burada başlıyor</h3>
+            <p><i class="fa-solid fa-location-dot"></i><span>Bora Bora Suları,<br />Sahil Caddesi No:42, Tahiti</span></p>
+            <p><i class="fa-solid fa-phone"></i><span>+689 12 34 56 78</span></p>
+            <p><i class="fa-solid fa-envelope"></i><span>info@yalcinhotel.com</span></p>
+            <p><i class="fa-regular fa-clock"></i><span>7 gün 24 saat hizmetinizdeyiz</span></p>
+        </aside>
+        <div class="contact-form-card"><h3>Bize mesaj gönderin</h3>
+            <form asp-controller="Contact" asp-action="Index" method="post" class="contact-form">
+                @Html.AntiForgeryToken()
+                <div class="form-row">
+                    <div class="field"><label asp-for="Name">Adınız Soyadınız</label><input asp-for="Name" placeholder="Ad Soyad" /><span asp-validation-for="Name"></span></div>
+                    <div class="field"><label asp-for="Email">E-posta adresiniz</label><input asp-for="Email" type="email" placeholder="ornek@mail.com" /><span asp-validation-for="Email"></span></div>
+                </div>
+                <div class="field"><label asp-for="Subject">Konu</label><input asp-for="Subject" placeholder="Mesajınızın konusu" /><span asp-validation-for="Subject"></span></div>
+                <div class="field"><label asp-for="Message">Mesajınız</label><textarea asp-for="Message" rows="5" placeholder="Mesajınızı buraya yazın..."></textarea><span asp-validation-for="Message"></span></div>
+                <button class="btn" type="submit">Mesajı Gönder <i class="fa-solid fa-arrow-right"></i></button>
+            </form>
+        </div>
+    </div>
+</section>

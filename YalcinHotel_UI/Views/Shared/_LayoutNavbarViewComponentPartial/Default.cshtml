@@ -1,0 +1,38 @@
+<header class="site-header">
+    <nav class="navbar" aria-label="Ana menü">
+        <a class="logo" asp-controller="Home" asp-action="Index">
+            <strong>YALÇIN HOTEL <span aria-label="5 yıldız">★★★★★</span></strong>
+            <small>TAHITI RESORT &amp; SPA</small>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" data-nav-toggle><i class="fa-solid fa-bars"></i></button>
+        <ul class="nav-links" data-nav-menu>
+            <li><a asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+            <li><a asp-controller="Home" asp-action="About">Hakkımızda</a></li>
+            <li><a asp-controller="Home" asp-action="Rooms">Odalar</a></li>
+            <li><a asp-controller="Reservation" asp-action="Create">Rezervasyon</a></li>
+            <li><a asp-controller="Home" asp-action="Contact">İletişim</a></li>
+            <li><a asp-controller="Home" asp-action="Services">Hizmetlerimiz</a></li>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                var profileImage = User.FindFirst("profile_image")?.Value;
+                <li class="account-nav" data-account-menu>
+                    <button type="button" class="account-trigger" aria-expanded="false" data-account-toggle>
+                        @if (!string.IsNullOrWhiteSpace(profileImage)) { <img src="@profileImage" alt="" /> }
+                        else { <span class="account-initial">@(User.Identity.Name?.FirstOrDefault().ToString().ToUpperInvariant() ?? "Y")</span> }
+                        <span class="account-trigger-name">@User.Identity.Name</span><i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="account-dropdown" data-account-dropdown>
+                        <a asp-controller="Account" asp-action="Profile"><i class="fa-regular fa-user"></i> Profilim</a>
+                        @if (User.IsInRole("Admin")) { <a asp-controller="Admin" asp-action="Index"><i class="fa-solid fa-gauge-high"></i> Yönetim paneli</a> }
+                        <form asp-controller="Account" asp-action="Logout" method="post"><button type="submit"><i class="fa-solid fa-arrow-right-from-bracket"></i> Çıkış yap</button></form>
+                    </div>
+                </li>
+                <li><a class="nav-book" asp-controller="Reservation" asp-action="Create">Konaklamanı planla <i class="fa-solid fa-arrow-right"></i></a></li>
+            }
+            else
+            {
+                <li class="guest-actions"><a class="nav-login" asp-controller="Account" asp-action="Login">Giriş Yap</a><a class="nav-register" asp-controller="Account" asp-action="Register">Kayıt Ol</a></li>
+            }
+        </ul>
+    </nav>
+</header>

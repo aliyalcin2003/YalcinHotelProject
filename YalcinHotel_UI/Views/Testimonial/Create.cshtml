@@ -1,0 +1,16 @@
+@model CreateTestimonialViewModel
+@{
+    ViewData["Title"] = "Yorum bırak";
+}
+<section class="contact-section review-create-page">
+    <div class="contact-intro"><span class="eyebrow">MİSAFİR DENEYİMİ</span><h2>Deneyiminizi paylaşın</h2><p>Yorumunuz yönetici onayından sonra otel sitesinde yayımlanır.</p></div>
+    <div class="contact-form-card review-create-card">
+        <form asp-action="Create" method="post" class="contact-form">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="field-validation-error"></div>
+            <div class="field"><label asp-for="Rating">Puanınız</label><select asp-for="Rating"><option value="5">5 yıldız - Mükemmel</option><option value="4">4 yıldız - Çok iyi</option><option value="3">3 yıldız - İyi</option><option value="2">2 yıldız - Geliştirilebilir</option><option value="1">1 yıldız</option></select><span asp-validation-for="Rating"></span></div>
+            <div class="field"><label asp-for="Comment">Yorumunuz</label><textarea asp-for="Comment" rows="6" maxlength="500" placeholder="Yalçın Hotel deneyiminizi anlatın..."></textarea><span asp-validation-for="Comment"></span></div>
+            <button type="submit" class="btn btn-gold">Yorumu gönder <i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+    </div>
+</section>

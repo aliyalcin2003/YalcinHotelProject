@@ -1,0 +1,47 @@
+@model AccountProfileViewModel
+@{
+    ViewData["Title"] = "Profilim";
+    var avatar = string.IsNullOrWhiteSpace(Model.ProfileImageUrl) ? "https://ui-avatars.com/api/?name=" + Uri.EscapeDataString(Model.NameSurname) + "&background=0f2027&color=d4af37&size=160" : Model.ProfileImageUrl;
+}
+<section class="profile-page">
+    <div class="profile-heading"><span class="eyebrow">HESAP AYARLARI</span><h1>Profilim</h1><p>Kişisel bilgilerinizi ve profil görselinizi buradan güncelleyebilirsiniz.</p></div>
+    @if (TempData["AccountMessage"] is string message) { <div class="site-alert"><i class="fa-solid fa-circle-check"></i> @message</div> }
+    @if (TempData["TestimonialMessage"] is string testimonialMessage) { <div class="site-alert"><i class="fa-solid fa-circle-check"></i> @testimonialMessage</div> }
+    <div class="profile-card">
+        <div class="profile-card-top"><div class="profile-avatar-wrap"><img id="profilePreview" src="@avatar" alt="Profil görseliniz" /><span><i class="fa-solid fa-camera"></i></span></div><div><h2>@Model.NameSurname</h2><p>@Model.Email</p></div></div>
+        <form asp-action="Profile" method="post" class="account-form">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="field-validation-error"></div>
+            <div class="field"><label asp-for="NameSurname">Ad soyad</label><input asp-for="NameSurname" autocomplete="name" /><span asp-validation-for="NameSurname"></span></div>
+            <div class="field"><label>E-posta adresi</label><input value="@Model.Email" type="email" readonly /><small class="form-help">E-posta adresi hesap tanımlayıcısı olarak kullanılır.</small></div>
+            <div class="field"><label asp-for="ProfileImageUrl">Profil fotoğrafı URL'si</label><input asp-for="ProfileImageUrl" type="url" placeholder="https://..." data-profile-url /><span asp-validation-for="ProfileImageUrl"></span><small class="form-help">Fotoğraf internet adresinden görüntülenir; dosya yüklenmez.</small></div>
+            <button class="btn btn-gold" type="submit">Profili güncelle <i class="fa-solid fa-check"></i></button>
+        </form>
+    </div>
+    <section class="reservation-history">
+        <div class="reservation-history-heading"><div><span class="eyebrow">KONAKLAMA PLANLARINIZ</span><h2>Rezervasyonlarım</h2><p>Otel ekibinin verdiği güncel durum burada görünür.</p></div><div class="profile-actions"><a class="btn btn-gold" asp-controller="Reservation" asp-action="Create">Yeni rezervasyon</a><a class="btn" asp-controller="Testimonial" asp-action="Create">Yorum bırak</a></div></div>
+        @if (Model.Reservations.Count == 0)
+        {
+            <div class="reservation-history-empty"><i class="fa-regular fa-calendar"></i><p>Henüz bir rezervasyon talebiniz yok.</p></div>
+        }
+        else
+        {
+            <div class="reservation-history-list">
+                @foreach (var reservation in Model.Reservations)
+                {
+                    var approved = reservation.Status == "Onaylandı";
+                    var rejected = reservation.Status == "Reddedildi";
+                    <article class="reservation-history-card">
+                        <div class="reservation-history-top"><div><span class="reservation-reference">REZERVASYON #@reservation.Id</span><h3>Oda #@reservation.RoomId</h3></div><span class="status-pill @(approved ? "status-approved" : rejected ? "status-rejected" : "status-pending")">@reservation.Status</span></div>
+                        <p class="reservation-history-dates"><i class="fa-regular fa-calendar"></i> @reservation.CheckInDate.ToString("dd.MM.yyyy") – @reservation.CheckOutDate.ToString("dd.MM.yyyy") <span>·</span> @reservation.GuestCount kişi</p>
+                        <p class="reservation-status-message @(approved ? "is-approved" : rejected ? "is-rejected" : "is-pending")">
+                            @if (approved) { <><i class="fa-solid fa-circle-check"></i> Rezervasyonunuz kabul edilmiştir.</> }
+                            else if (rejected) { <><i class="fa-solid fa-circle-xmark"></i> Rezervasyonunuz reddedilmiştir.</> }
+                            else { <><i class="fa-regular fa-clock"></i> Talebiniz alınmıştır, otel onayı bekleniyor.</> }
+                        </p>
+                    </article>
+                }
+            </div>
+        }
+    </section>
+</section>
