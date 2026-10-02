@@ -5,8 +5,14 @@
 }
 <section class="profile-page">
     <div class="profile-heading"><span class="eyebrow">HESAP AYARLARI</span><h1>Profilim</h1><p>Kişisel bilgilerinizi ve profil görselinizi buradan güncelleyebilirsiniz.</p></div>
-    @if (TempData["AccountMessage"] is string message) { <div class="site-alert"><i class="fa-solid fa-circle-check"></i> @message</div> }
-    @if (TempData["TestimonialMessage"] is string testimonialMessage) { <div class="site-alert"><i class="fa-solid fa-circle-check"></i> @testimonialMessage</div> }
+    @if (TempData["AccountMessage"] is string message)
+    {
+        <div class="site-alert"><i class="fa-solid fa-circle-check"></i> @message</div>
+    }
+    @if (TempData["TestimonialMessage"] is string testimonialMessage)
+    {
+        <div class="site-alert"><i class="fa-solid fa-circle-check"></i> @testimonialMessage</div>
+    }
     <div class="profile-card">
         <div class="profile-card-top"><div class="profile-avatar-wrap"><img id="profilePreview" src="@avatar" alt="Profil görseliniz" /><span><i class="fa-solid fa-camera"></i></span></div><div><h2>@Model.NameSurname</h2><p>@Model.Email</p></div></div>
         <form asp-action="Profile" method="post" class="account-form">
@@ -35,9 +41,18 @@
                         <div class="reservation-history-top"><div><span class="reservation-reference">REZERVASYON #@reservation.Id</span><h3>Oda #@reservation.RoomId</h3></div><span class="status-pill @(approved ? "status-approved" : rejected ? "status-rejected" : "status-pending")">@reservation.Status</span></div>
                         <p class="reservation-history-dates"><i class="fa-regular fa-calendar"></i> @reservation.CheckInDate.ToString("dd.MM.yyyy") – @reservation.CheckOutDate.ToString("dd.MM.yyyy") <span>·</span> @reservation.GuestCount kişi</p>
                         <p class="reservation-status-message @(approved ? "is-approved" : rejected ? "is-rejected" : "is-pending")">
-                            @if (approved) { <><i class="fa-solid fa-circle-check"></i> Rezervasyonunuz kabul edilmiştir.</> }
-                            else if (rejected) { <><i class="fa-solid fa-circle-xmark"></i> Rezervasyonunuz reddedilmiştir.</> }
-                            else { <><i class="fa-regular fa-clock"></i> Talebiniz alınmıştır, otel onayı bekleniyor.</> }
+                            @if (approved)
+                            {
+                                <><i class="fa-solid fa-circle-check"></i> Rezervasyonunuz kabul edilmiştir.</>
+                            }
+                            else if (rejected)
+                            {
+                                <><i class="fa-solid fa-circle-xmark"></i> Rezervasyonunuz reddedilmiştir.</>
+                            }
+                            else
+                            {
+                                <><i class="fa-regular fa-clock"></i> Talebiniz alınmıştır, otel onayı bekleniyor.</>
+                            }
                         </p>
                     </article>
                 }

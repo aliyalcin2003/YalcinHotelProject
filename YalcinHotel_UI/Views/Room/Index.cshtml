@@ -4,10 +4,16 @@
     Layout = "_LayoutAdmin";
 }
 <section class="admin-page-heading"><div><span class="admin-kicker">KONAKLAMA YÖNETİMİ</span><h1>Odalar</h1><p>Oda bilgilerini, müsaitliği ve sitede görünürlüğünü yönetin.</p></div><a class="btn btn-primary" asp-action="Create"><i class="fa-solid fa-plus"></i> Yeni oda ekle</a></section>
-@if (TempData["RoomMessage"] is string message) { <div class="admin-alert"><i class="fa-solid fa-circle-check"></i> @message</div> }
+@if (TempData["RoomMessage"] is string message)
+{
+    <div class="admin-alert"><i class="fa-solid fa-circle-check"></i> @message</div>
+}
 <div class="card"><div class="card-header"><h2 class="card-title">Oda envanteri <span class="admin-count">@Model.Count kayıt</span></h2></div>
     <div class="card-body table-responsive">
-        @if (Model.Count == 0) { <div class="admin-empty"><i class="fa-solid fa-bed"></i><h3>Henüz oda eklenmemiş</h3><p>İlk oda kaydınızı oluşturarak başlayın.</p></div> }
+        @if (Model.Count == 0)
+        {
+            <div class="admin-empty"><i class="fa-solid fa-bed"></i><h3>Henüz oda eklenmemiş</h3><p>İlk oda kaydınızı oluşturarak başlayın.</p></div>
+        }
         else
         {
             <table class="table"><thead><tr><th>ODA</th><th>KAPASİTE</th><th>GECELİK</th><th>DURUM</th><th>İŞLEMLER</th></tr></thead><tbody>
@@ -16,8 +22,24 @@
                 <tr>
                     <td><div class="table-room"><img src="@room.ImageUrl" alt="" /><div><strong>@room.Title</strong><small>@room.Description</small></div></div></td>
                     <td>@room.Capacity kişi</td><td>@room.Price.ToString("C0")</td>
-                    <td><span class="status-pill @(room.IsActive ? (room.IsAvailable ? "status-approved" : "status-pending") : "status-rejected")">@(room.IsActive ? (room.IsAvailable ? "Müsait" : "Dolu") : "Yayında değil")</span>@if (room.IsPopular){<span class="popular-tag">Popüler</span>}</td>
-                    <td><div class="table-actions"><a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@room.Id"><i class="fa-solid fa-pen"></i> Düzenle</a>@if (room.IsActive){<form asp-action="Delete" asp-route-id="@room.Id" method="post" onsubmit="return confirm('Bu oda siteden kaldırılacak. Devam edilsin mi?')"><button type="submit" class="btn btn-danger-soft btn-sm"><i class="fa-regular fa-eye-slash"></i> Yayından kaldır</button></form>}</div></td>
+                    <td>
+                        <span class="status-pill @(room.IsActive ? (room.IsAvailable ? "status-approved" : "status-pending") : "status-rejected")">@(room.IsActive ? (room.IsAvailable ? "Müsait" : "Dolu") : "Yayında değil")</span>
+                        @if (room.IsPopular)
+                        {
+                            <span class="popular-tag">Popüler</span>
+                        }
+                    </td>
+                    <td>
+                        <div class="table-actions">
+                            <a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@room.Id"><i class="fa-solid fa-pen"></i> Düzenle</a>
+                            @if (room.IsActive)
+                            {
+                                <form asp-action="Delete" asp-route-id="@room.Id" method="post" onsubmit="return confirm('Bu oda siteden kaldırılacak. Devam edilsin mi?')">
+                                    <button type="submit" class="btn btn-danger-soft btn-sm"><i class="fa-regular fa-eye-slash"></i> Yayından kaldır</button>
+                                </form>
+                            }
+                        </div>
+                    </td>
                 </tr>
             }
             </tbody></table>

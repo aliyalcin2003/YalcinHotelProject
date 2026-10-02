@@ -40,11 +40,15 @@ namespace YalcinHotel_UI.Controllers
         public IActionResult Create(EmployeeCreateViewModel model)
         {
             if (!IsHttpUrl(model.ImageUrl))
+            {
                 ModelState.AddModelError(nameof(model.ImageUrl), "Fotoğraf http veya https adresi olmalıdır.");
+            }
 
             var about = _aboutService.GetById(model.AboutId);
             if (about == null || !about.IsActive)
+            {
                 ModelState.AddModelError(nameof(model.AboutId), "Çalışanın bağlanacağı aktif Hakkımızda kaydını seçin.");
+            }
 
             if (!ModelState.IsValid)
             {
@@ -73,7 +77,9 @@ namespace YalcinHotel_UI.Controllers
         {
             var employee = _employeeService.GetById(id);
             if (employee == null)
+            {
                 return NotFound();
+            }
 
             employee.Status = !employee.Status;
             employee.IsActive = employee.Status;

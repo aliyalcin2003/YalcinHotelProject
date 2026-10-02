@@ -33,7 +33,9 @@ namespace YalcinHotel_UI.Controllers
         public IActionResult Create(ServiceManagementViewModel model)
         {
             if (!ModelState.IsValid)
+            {
                 return View(model);
+            }
 
             _serviceService.Create(new Service
             {
@@ -51,7 +53,9 @@ namespace YalcinHotel_UI.Controllers
         {
             var value = _serviceService.GetById(id);
             if (value == null)
+            {
                 return NotFound();
+            }
 
             return View(new ServiceManagementViewModel
             {
@@ -68,9 +72,14 @@ namespace YalcinHotel_UI.Controllers
         {
             var value = _serviceService.GetById(model.Id);
             if (value == null)
+            {
                 return NotFound();
+            }
+
             if (!ModelState.IsValid)
+            {
                 return View(model);
+            }
 
             value.Title = model.Title.Trim();
             value.Description = model.Description.Trim();
@@ -86,7 +95,9 @@ namespace YalcinHotel_UI.Controllers
         {
             var value = _serviceService.GetById(id);
             if (value == null)
+            {
                 return NotFound();
+            }
 
             value.IsActive = !value.IsActive;
             _serviceService.Update(value);

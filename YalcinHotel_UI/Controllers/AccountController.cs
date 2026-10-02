@@ -18,12 +18,12 @@ namespace YalcinHotel_UI.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly ICustomerService _customerService;
-        private readonly IReservationService _reservationService;
-        private readonly PasswordHasher<Customer> _passwordHasher = new();
-        private readonly IConfiguration _configuration;
-        private readonly IDataProtector _resetTokenProtector;
-        private readonly IWebHostEnvironment _environment;
+        private readonly ICustomerService _customerService; // CustomerService'yi kullanmak için gerekli olan bağımlılık yönetmimi.
+        private readonly IReservationService _reservationService; // ReservationService'yi kullanmak için gerekli olan bağımlılık yönetimi.
+        private readonly PasswordHasher<Customer> _passwordHasher = new(); // PasswordHasher<Customer> sınıfını kullanarak şifreleri hashlemek ve doğrulamak için bir örnek oluşturuyoruz.
+        private readonly IConfiguration _configuration; // IConfiguration arayüzü, uygulamanın yapılandırma ayarlarına erişmek için kullanılır.
+        private readonly IDataProtector _resetTokenProtector; // IDataProtector arayüzü, şifre sıfırlama token'larını güvenli bir şekilde korumak ve çözmek için kullanılır.
+        private readonly IWebHostEnvironment _environment; // IWebHostEnvironment arayüzü, uygulamanın çalışma ortamı hakkında bilgi sağlar (örneğin, geliştirme veya üretim ortamı).
 
         public AccountController(ICustomerService customerService, IReservationService reservationService, IConfiguration configuration, IDataProtectionProvider dataProtectionProvider, IWebHostEnvironment environment)
         {
@@ -40,11 +40,17 @@ namespace YalcinHotel_UI.Controllers
             if (User.Identity?.IsAuthenticated == true)
             {
                 if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
-                    return LocalRedirect(returnUrl);
+                {
 
-                return User.IsInRole("Admin")
+                    return LocalRedirect(returnUrl);
+                }
+
+                else 
+                {
+                    return User.IsInRole("Admin")
                     ? RedirectToAction("Index", "Admin")
                     : RedirectToAction("Index", "Home");
+                }
             }
 
             return View(new AccountLoginViewModel { ReturnUrl = returnUrl });
@@ -55,7 +61,10 @@ namespace YalcinHotel_UI.Controllers
         public async Task<IActionResult> Login(AccountLoginViewModel model)
         {
             if (!ModelState.IsValid)
+            {
                 return View(model);
+            }
+
 
             var customer = _customerService.GetAll()
                 .FirstOrDefault(item => string.Equals(item.Email, model.Email.Trim(), StringComparison.OrdinalIgnoreCase) && item.IsActive);
@@ -81,7 +90,9 @@ namespace YalcinHotel_UI.Controllers
 
             await SignInCustomer(customer, model.RememberMe);
             if (!string.IsNullOrWhiteSpace(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+            {
                 return LocalRedirect(model.ReturnUrl);
+            }
 
             return customer.Role == "Admin"
                 ? RedirectToAction("Index", "Admin")
@@ -92,7 +103,9 @@ namespace YalcinHotel_UI.Controllers
         public IActionResult Register()
         {
             if (User.Identity?.IsAuthenticated == true)
+            {
                 return RedirectToAction("Index", "Home");
+            }
 
             return View(new AccountRegisterViewModel());
         }
@@ -105,7 +118,9 @@ namespace YalcinHotel_UI.Controllers
         public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             if (!ModelState.IsValid)
+            {
                 return View(model);
+            }
 
             TempData["PasswordResetMessage"] = "Bu e-posta adresi kayıtlıysa şifre yenileme bağlantısı hazırlanmıştır.";
             var customer = _customerService.GetAll()
@@ -120,7 +135,9 @@ namespace YalcinHotel_UI.Controllers
 
                 // This local preview keeps password recovery usable during development without SMTP.
                 if (!sent && _environment.IsDevelopment())
+                {
                     TempData["DevelopmentResetLink"] = resetUrl;
+                }
             }
 
             return RedirectToAction(nameof(ForgotPassword));
@@ -130,7 +147,9 @@ namespace YalcinHotel_UI.Controllers
         public IActionResult ResetPassword(string? token)
         {
             if (string.IsNullOrWhiteSpace(token) || GetResetCustomer(token) == null)
+            {
                 return View("ResetPasswordInvalid");
+            }
 
             return View(new ResetPasswordViewModel { Token = token });
         }
@@ -141,10 +160,14 @@ namespace YalcinHotel_UI.Controllers
         {
             var customer = GetResetCustomer(model.Token);
             if (customer == null)
+            {
                 return View("ResetPasswordInvalid");
+            }
 
             if (!ModelState.IsValid)
+            {
                 return View(model);
+            }
 
             customer.Password = _passwordHasher.HashPassword(customer, model.Password);
             var adminEmail = _configuration["Admin:Email"];
@@ -163,7 +186,9 @@ namespace YalcinHotel_UI.Controllers
         public async Task<IActionResult> Register(AccountRegisterViewModel model)
         {
             if (!ModelState.IsValid)
+            {
                 return View(model);
+            }
 
             var email = model.Email.Trim();
             var exists = _customerService.GetAll()
@@ -197,7 +222,9 @@ namespace YalcinHotel_UI.Controllers
         {
             var customer = GetCurrentCustomer();
             if (customer == null)
+            {
                 return Challenge();
+            }
 
             return View(new AccountProfileViewModel
             {
@@ -218,10 +245,14 @@ namespace YalcinHotel_UI.Controllers
         {
             var customer = GetCurrentCustomer();
             if (customer == null)
+            {
                 return Challenge();
+            }
 
             if (!string.IsNullOrWhiteSpace(model.ProfileImageUrl) && !IsHttpUrl(model.ProfileImageUrl))
+            {
                 ModelState.AddModelError(nameof(model.ProfileImageUrl), "Profil görseli http veya https adresi olmalıdır.");
+            }
 
             if (!ModelState.IsValid)
             {
@@ -266,7 +297,9 @@ namespace YalcinHotel_UI.Controllers
                 var payload = _resetTokenProtector.Unprotect(protectedToken).Split('|', 3);
                 if (payload.Length != 3 || !int.TryParse(payload[0], out var id) ||
                     !long.TryParse(payload[1], out var expires) || expires < DateTimeOffset.UtcNow.ToUnixTimeSeconds())
+                {
                     return null;
+                }
 
                 var customer = _customerService.GetById(id);
                 return customer != null && customer.IsActive && string.Equals(customer.Password, payload[2], StringComparison.Ordinal)
@@ -285,7 +318,9 @@ namespace YalcinHotel_UI.Controllers
             var from = _configuration["Email:From"];
             if (string.IsNullOrWhiteSpace(host) || string.IsNullOrWhiteSpace(from) ||
                 !int.TryParse(_configuration["Email:Smtp:Port"], out var port))
+            {
                 return false;
+            }
 
             using var message = new MailMessage(from, customer.Email)
             {
@@ -300,7 +335,9 @@ namespace YalcinHotel_UI.Controllers
             var username = _configuration["Email:Smtp:Username"];
             var password = _configuration["Email:Smtp:Password"];
             if (!string.IsNullOrWhiteSpace(username))
+            {
                 client.Credentials = new NetworkCredential(username, password);
+            }
 
             try
             {
@@ -320,7 +357,10 @@ namespace YalcinHotel_UI.Controllers
             {
                 var result = _passwordHasher.VerifyHashedPassword(customer, customer.Password, password);
                 if (result == PasswordVerificationResult.SuccessRehashNeeded)
+                {
                     needsRehash = true;
+                }
+
                 return result != PasswordVerificationResult.Failed;
             }
             catch (FormatException)
@@ -347,7 +387,9 @@ namespace YalcinHotel_UI.Controllers
                 new(ClaimTypes.Role, customer.Role)
             };
             if (!string.IsNullOrWhiteSpace(customer.ProfileImageUrl))
+            {
                 claims.Add(new Claim("profile_image", customer.ProfileImageUrl));
+            }
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
@@ -360,3 +402,4 @@ namespace YalcinHotel_UI.Controllers
             (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps);
     }
 }
+

@@ -7,7 +7,10 @@
         <span class="eyebrow">TAHITI RESORT &amp; SPA</span>
         <h1>Tekrar hoş geldiniz.</h1>
         <p class="account-lead">Rezervasyonunuzu sürdürmek ve profilinizi yönetmek için hesabınıza giriş yapın.</p>
-        @if (TempData["PasswordResetMessage"] is string resetMessage) { <div class="site-alert"><i class="fa-solid fa-circle-info"></i> @resetMessage</div> }
+        @if (TempData["PasswordResetMessage"] is string resetMessage)
+        {
+            <div class="site-alert"><i class="fa-solid fa-circle-info"></i> @resetMessage</div>
+        }
         <form asp-action="Login" method="post" class="account-form">
             @Html.AntiForgeryToken()<input asp-for="ReturnUrl" type="hidden" />
             <div asp-validation-summary="ModelOnly" class="field-validation-error"></div>

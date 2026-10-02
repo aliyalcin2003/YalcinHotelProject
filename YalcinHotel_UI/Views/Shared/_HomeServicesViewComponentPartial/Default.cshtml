@@ -5,11 +5,20 @@
         @foreach (var item in Model ?? Enumerable.Empty<YalcinHotel_Entity.Service>())
         {
             <article class="service-card @(item.IsActive ? "service-active" : "service-inactive")">
-                @if (!string.IsNullOrWhiteSpace(item.IconUrl)) { <i class="@item.IconUrl" aria-hidden="true"></i> }
+                @if (!string.IsNullOrWhiteSpace(item.IconUrl))
+                {
+                    <i class="@item.IconUrl" aria-hidden="true"></i>
+                }
                 <h3>@item.Title</h3>
                 <p>@item.Description</p>
-                @if (item.IsActive) { <span class="service-open-badge"><i class="fa-solid fa-circle-check"></i> Aktif</span> }
-                @if (!item.IsActive) { <span class="service-closed-badge"><i class="fa-regular fa-clock"></i> Geçici süreyle kapalıdır</span> }
+                @if (item.IsActive)
+                {
+                    <span class="service-open-badge"><i class="fa-solid fa-circle-check"></i> Aktif</span>
+                }
+                else
+                {
+                    <span class="service-closed-badge"><i class="fa-regular fa-clock"></i> Geçici süreyle kapalıdır</span>
+                }
             </article>
         }
     </div>

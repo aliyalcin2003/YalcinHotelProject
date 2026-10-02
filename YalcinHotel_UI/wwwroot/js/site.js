@@ -24,17 +24,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileUrl = document.querySelector("[data-profile-url]");
     const profilePreview = document.getElementById("profilePreview");
     profileUrl?.addEventListener("input", () => {
-        if (profilePreview && profileUrl.value) profilePreview.src = profileUrl.value;
+        if (profilePreview && profileUrl.value) {
+            profilePreview.src = profileUrl.value;
+        }
     });
 
     const checkIn = document.getElementById("CheckIn");
     const checkOut = document.getElementById("CheckOut");
     checkIn?.addEventListener("change", () => {
-        if (!checkOut) return;
+        if (!checkOut) {
+            return;
+        }
         checkOut.min = checkIn.value
             ? new Date(new Date(checkIn.value).getTime() + 86400000).toISOString().slice(0, 10)
             : "";
-        if (checkOut.value && checkOut.value <= checkIn.value) checkOut.value = "";
+        if (checkOut.value && checkOut.value <= checkIn.value) {
+            checkOut.value = "";
+        }
     });
 
     document.querySelectorAll("[data-room-carousel]").forEach((carousel) => {
@@ -42,7 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const section = carousel.closest(".rooms-section");
         const step = () => {
             const card = track?.querySelector(".room-card");
-            if (!card || !track) return 0;
+            if (!card || !track) {
+                return 0;
+            }
             const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
             return card.getBoundingClientRect().width + gap;
         };

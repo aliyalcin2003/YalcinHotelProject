@@ -4,10 +4,16 @@
     Layout = "_LayoutAdmin";
 }
 <section class="admin-page-heading"><div><span class="admin-kicker">MİSAFİR TALEPLERİ</span><h1>Rezervasyonlar</h1><p>Konaklama taleplerini inceleyin, onaylayın veya reddedin.</p></div><span class="admin-count-large">@Model.Count talep</span></section>
-@if (TempData["ReservationMessage"] is string message) { <div class="admin-alert"><i class="fa-solid fa-circle-check"></i> @message</div> }
+@if (TempData["ReservationMessage"] is string message)
+{
+    <div class="admin-alert"><i class="fa-solid fa-circle-check"></i> @message</div>
+}
 <div class="card"><div class="card-header"><h2 class="card-title">Gelen talepler</h2></div>
     <div class="card-body table-responsive">
-        @if (Model.Count == 0) { <div class="admin-empty"><i class="fa-regular fa-calendar-check"></i><h3>Yeni rezervasyon talebi yok</h3><p>Misafir talepleri bu listede görünür.</p></div> }
+        @if (Model.Count == 0)
+        {
+            <div class="admin-empty"><i class="fa-regular fa-calendar-check"></i><h3>Yeni rezervasyon talebi yok</h3><p>Misafir talepleri bu listede görünür.</p></div>
+        }
         else
         {
             <table class="table"><thead><tr><th>MİSAFİR</th><th>KONAKLAMA</th><th>TARİHLER</th><th>MİSAFİR SAYISI</th><th>DURUM</th><th>İŞLEM</th></tr></thead><tbody>
@@ -25,7 +31,10 @@
                             <form asp-action="UpdateStatus" method="post"><input type="hidden" name="id" value="@reservation.Id" /><input type="hidden" name="status" value="Onaylandı" /><button class="btn btn-primary btn-sm" type="submit"><i class="fa-solid fa-check"></i> Onayla</button></form>
                             <form asp-action="UpdateStatus" method="post"><input type="hidden" name="id" value="@reservation.Id" /><input type="hidden" name="status" value="Reddedildi" /><button class="btn btn-danger-soft btn-sm" type="submit"><i class="fa-solid fa-xmark"></i> Reddet</button></form>
                         }
-                        else { <span class="status-note">İşlem tamamlandı</span> }
+                        else
+                        {
+                            <span class="status-note">İşlem tamamlandı</span>
+                        }
                     </div></td>
                 </tr>
             }

@@ -14,7 +14,19 @@
         <table class="table"><thead><tr><th>MÜŞTERİ</th><th>KAYIT TARİHİ</th><th>REZERVASYON</th></tr></thead><tbody>
                 @foreach (var customer in Model.Customers) // Bu döngü, Model.Customers listesindeki her bir müşteri için bir tablo satırı oluşturur. Her bir müşteri için, ad, e-posta, profil resmi URL'si, oluşturulma tarihi ve rezervasyon sayısı gibi bilgileri görüntüler. Bu bilgiler, kullanıcıya kayıtlı müşteriler hakkında bilgi sağlamak için kullanılabilir.
         {
-            <tr><td><div class="testimonial-guest">@if (!string.IsNullOrWhiteSpace(customer.ProfileImageUrl)) { <img src="@customer.ProfileImageUrl" alt="@customer.Name" /> }<div><strong>@customer.Name</strong><small class="table-subline">@customer.Email</small><small class="table-subline">Müşteri #@customer.Id</small></div></div></td><td>@customer.CreatedDate.ToString("dd.MM.yyyy")</td><td>@customer.ReservationCount</td></tr>
+            <tr>
+                <td>
+                    <div class="testimonial-guest">
+                        @if (!string.IsNullOrWhiteSpace(customer.ProfileImageUrl))
+                        {
+                            <img src="@customer.ProfileImageUrl" alt="@customer.Name" />
+                        }
+                        <div><strong>@customer.Name</strong><small class="table-subline">@customer.Email</small><small class="table-subline">Müşteri #@customer.Id</small></div>
+                    </div>
+                </td>
+                <td>@customer.CreatedDate.ToString("dd.MM.yyyy")</td>
+                <td>@customer.ReservationCount</td>
+            </tr>
         }
         </tbody></table>
     }

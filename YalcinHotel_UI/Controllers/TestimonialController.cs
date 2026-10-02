@@ -50,12 +50,16 @@ namespace YalcinHotel_UI.Controllers
         public IActionResult Create(CreateTestimonialViewModel model)
         {
             if (!ModelState.IsValid)
+            {
                 return View(model);
+            }
 
             var customerId = int.TryParse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value, out var id) ? id : 0;
             var customer = customerId > 0 ? _customerService.GetById(customerId) : null;
             if (customer == null || !customer.IsActive)
+            {
                 return Challenge();
+            }
 
             _testimonialService.Create(new Testimonial
             {
@@ -80,7 +84,9 @@ namespace YalcinHotel_UI.Controllers
         {
             var testimonial = _testimonialService.GetById(id);
             if (testimonial == null)
+            {
                 return NotFound();
+            }
 
             testimonial.IsActive = !testimonial.IsActive;
             _testimonialService.Update(testimonial);
@@ -97,7 +103,9 @@ namespace YalcinHotel_UI.Controllers
         {
             var testimonial = _testimonialService.GetById(id);
             if (testimonial == null)
+            {
                 return NotFound();
+            }
 
             _testimonialService.Delete(testimonial);
             TempData["TestimonialMessage"] = "Müşteri yorumu silindi.";

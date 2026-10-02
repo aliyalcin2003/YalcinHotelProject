@@ -34,10 +34,14 @@ namespace YalcinHotel_UI.Controllers
         public IActionResult Create(CreateRoomDTO model)
         {
             if (!ImageMethods.IsExternalImageUrl(model.ImageUrl))
+            {
                 ModelState.AddModelError(nameof(model.ImageUrl), "Oda görseli için http veya https adresi girin.");
+            }
 
             if (!ModelState.IsValid)
+            {
                 return View(model);
+            }
 
             model.ImageUrl = ImageMethods.NormalizeImageUrl(model.ImageUrl);
             _roomService.Create(_mapper.Map<Room>(model));
@@ -57,14 +61,20 @@ namespace YalcinHotel_UI.Controllers
         public IActionResult Edit(UpdateRoomDTO model)
         {
             if (!ImageMethods.IsExternalImageUrl(model.ImageUrl))
+            {
                 ModelState.AddModelError(nameof(model.ImageUrl), "Oda görseli için http veya https adresi girin.");
+            }
 
             if (!ModelState.IsValid)
+            {
                 return View(model);
+            }
 
             var room = _roomService.GetById(model.Id);
             if (room == null)
+            {
                 return NotFound();
+            }
 
             model.ImageUrl = ImageMethods.NormalizeImageUrl(model.ImageUrl);
             _mapper.Map(model, room);
@@ -79,7 +89,9 @@ namespace YalcinHotel_UI.Controllers
         {
             var room = _roomService.GetById(id);
             if (room == null)
+            {
                 return NotFound();
+            }
 
             // Rezervasyonlardaki RoomId bağını korumak için odayı pasife alıyoruz.
             room.IsActive = false;

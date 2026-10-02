@@ -5,7 +5,10 @@
         @foreach (var item in Model ?? Enumerable.Empty<YalcinHotel_Entity.Employee>())
         {
             <article class="team-card">
-                @if (!string.IsNullOrWhiteSpace(item.ImageUrl)) { <img src="@item.ImageUrl" alt="@item.Name @item.Surname" /> }
+                @if (!string.IsNullOrWhiteSpace(item.ImageUrl))
+                {
+                    <img src="@item.ImageUrl" alt="@item.Name @item.Surname" />
+                }
                 <h3>@item.Name @item.Surname</h3>
                 <p>@item.Title</p>
             </article>

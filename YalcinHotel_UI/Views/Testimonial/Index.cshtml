@@ -4,7 +4,10 @@
     Layout = "_LayoutAdmin";
 }
 <section class="admin-page-heading"><div><span class="admin-kicker">MİSAFİR DENEYİMLERİ</span><h1>Müşteri yorumları</h1><p>Yorumların listesini görün ve sitede yayımlanma durumlarını yönetin.</p></div><span class="admin-count-large">@Model.Count yorum</span></section>
-@if (TempData["TestimonialMessage"] is string message) { <div class="admin-alert"><i class="fa-solid fa-circle-check"></i> @message</div> }
+@if (TempData["TestimonialMessage"] is string message)
+{
+    <div class="admin-alert"><i class="fa-solid fa-circle-check"></i> @message</div>
+}
 <div class="card"><div class="card-header"><h2 class="card-title">Tüm yorumlar</h2></div><div class="card-body table-responsive">
     @if (Model.Count == 0)
     {
@@ -17,7 +20,15 @@
         {
             var item = row.Testimonial;
             <tr>
-                <td><div class="testimonial-guest">@if (!string.IsNullOrWhiteSpace(row.ProfileImageUrl)) { <img src="@row.ProfileImageUrl" alt="@row.CustomerName" /> }<div><strong>@row.CustomerName</strong><small class="table-subline">@row.CustomerEmail</small><small class="table-subline">@item.Title</small></div></div></td>
+                <td>
+                    <div class="testimonial-guest">
+                        @if (!string.IsNullOrWhiteSpace(row.ProfileImageUrl))
+                        {
+                            <img src="@row.ProfileImageUrl" alt="@row.CustomerName" />
+                        }
+                        <div><strong>@row.CustomerName</strong><small class="table-subline">@row.CustomerEmail</small><small class="table-subline">@item.Title</small></div>
+                    </div>
+                </td>
                 <td class="testimonial-comment">@item.Comment</td>
                 <td><span class="testimonial-rating">@item.Rating <i class="fa-solid fa-star"></i></span></td>
                 <td>@item.CreatedDate.ToString("dd.MM.yyyy")</td>

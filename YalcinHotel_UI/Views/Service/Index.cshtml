@@ -4,7 +4,10 @@
     Layout = "_LayoutAdmin";
 }
 <section class="admin-page-heading"><div><span class="admin-kicker">OTEL HİZMETLERİ</span><h1>Hizmet yönetimi</h1><p>Hizmetlerin aktiflik durumunu ve sitede gösterilen bilgilerini yönetin.</p></div><a class="btn btn-primary" asp-action="Create"><i class="fa-solid fa-plus"></i> Hizmet ekle</a></section>
-@if (TempData["ServiceMessage"] is string message) { <div class="admin-alert"><i class="fa-solid fa-circle-check"></i> @message</div> }
+@if (TempData["ServiceMessage"] is string message)
+{
+    <div class="admin-alert"><i class="fa-solid fa-circle-check"></i> @message</div>
+}
 <div class="card"><div class="card-header"><h2 class="card-title">Tüm hizmetler</h2><span class="admin-count">@Model.Count hizmet</span></div><div class="card-body table-responsive">
     @if (Model.Count == 0)
     {

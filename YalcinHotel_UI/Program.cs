@@ -98,7 +98,9 @@ namespace YalcinHotel_UI
             var email = app.Configuration["Admin:Email"]?.Trim();
             var password = app.Configuration["Admin:Password"];
             if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+            {
                 throw new InvalidOperationException("Admin:Email ve Admin:Password ayarları tanımlanmalıdır.");
+            }
 
             using var scope = app.Services.CreateScope();
             var customers = scope.ServiceProvider.GetRequiredService<ICustomerService>();
@@ -106,7 +108,9 @@ namespace YalcinHotel_UI
                 .FirstOrDefault(customer => string.Equals(customer.Email, email, StringComparison.OrdinalIgnoreCase));
 
             if (admin?.IsAdminBootstrapped == true)
+            {
                 return;
+            }
 
             admin ??= new Customer { Email = email };
             admin.NameSurname = admin.NameSurname ?? "Yalçın Hotel Yönetici";
@@ -116,9 +120,13 @@ namespace YalcinHotel_UI
             admin.IsAdminBootstrapped = true;
 
             if (admin.Id == 0)
+            {
                 customers.Create(admin);
+            }
             else
+            {
                 customers.Update(admin);
+            }
         }
 
         private static void EnsureMangoPlantationService(WebApplication app)

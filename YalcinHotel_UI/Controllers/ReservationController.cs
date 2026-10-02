@@ -52,15 +52,24 @@ namespace YalcinHotel_UI.Controllers
         public IActionResult Create(CreateReservationDTO p)
         {
             if (p.CheckIn.Date < DateTime.Today)
+            {
                 ModelState.AddModelError(nameof(p.CheckIn), "Giriş tarihi bugünden önce olamaz.");
+            }
+
             if (p.CheckOut.Date <= p.CheckIn.Date)
+            {
                 ModelState.AddModelError(nameof(p.CheckOut), "Çıkış tarihi giriş tarihinden sonra olmalıdır.");
+            }
 
             var room = p.RoomId > 0 ? _roomService.GetById(p.RoomId) : null;
             if (room == null || !room.IsActive || !room.IsAvailable)
+            {
                 ModelState.AddModelError(nameof(p.RoomId), "Seçtiğiniz oda şu anda müsait değil.");
+            }
             else if (p.GuestCount > room.Capacity)
+            {
                 ModelState.AddModelError(nameof(p.GuestCount), $"Bu oda en fazla {room.Capacity} misafir ağırlayabilir.");
+            }
 
             if (!ModelState.IsValid)
             {
@@ -71,7 +80,9 @@ namespace YalcinHotel_UI.Controllers
             value.CustomerName = User.FindFirstValue(ClaimTypes.Name) ?? p.Name.Trim();
             value.CustomerEmail = User.FindFirstValue(ClaimTypes.Email) ?? p.Email.Trim();
             if (!int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out var customerId))
+            {
                 return Challenge();
+            }
 
             value.CustomerId = customerId;
             value.Status = "Onay Bekliyor";
@@ -103,14 +114,18 @@ namespace YalcinHotel_UI.Controllers
         {
             var reservation = _reservationService.GetById(id);
             if (reservation == null)
+            {
                 return NotFound();
+            }
 
             var email = User.FindFirstValue(ClaimTypes.Email) ?? string.Empty;
             var currentCustomerId = int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out var parsedCustomerId) ? parsedCustomerId : 0;
             var ownsReservation = reservation.CustomerId == currentCustomerId ||
                                   string.Equals(reservation.CustomerEmail, email, StringComparison.OrdinalIgnoreCase);
             if (!ownsReservation)
+            {
                 return Forbid();
+            }
 
             return View(new ReservationConfirmationViewModel
             {
@@ -167,11 +182,15 @@ namespace YalcinHotel_UI.Controllers
         public IActionResult UpdateStatus(int id, string status)
         {
             if (status is not ("Onaylandı" or "Reddedildi"))
+            {
                 return BadRequest();
+            }
 
             var reservation = _reservationService.GetById(id);
             if (reservation == null)
+            {
                 return NotFound();
+            }
 
             reservation.Status = status;
             _reservationService.Update(reservation);

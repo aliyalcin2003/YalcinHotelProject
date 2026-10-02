@@ -107,7 +107,9 @@ namespace YalcinHotel_UI.Controllers
         {
             var slider = _sliderService.GetById(id);
             if (slider == null)
+            {
                 return NotFound();
+            }
 
             _sliderService.Delete(slider);
             TempData["SliderMessage"] = "Görsel kaydı silindi.";
