@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\YalcinHotelDAL\YalcinHotel_DAL.csproj" />
+    <ProjectReference Include="..\YalcinHotel_DAL\YalcinHotel_DAL.csproj" />
     <ProjectReference Include="..\YalcinHotel_Entity\YalcinHotel_Entity.csproj" />
   </ItemGroup>
 
