@@ -27,7 +27,10 @@ namespace YalcinHotel_UI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create() => View(new CreateRoomDTO());
+        public IActionResult Create()
+        {
+            return View(new CreateRoomDTO());
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -53,7 +56,12 @@ namespace YalcinHotel_UI.Controllers
         public IActionResult Edit(int id)
         {
             var room = _roomService.GetById(id);
-            return room == null ? NotFound() : View(_mapper.Map<UpdateRoomDTO>(room));
+            if (room == null)
+            {
+                return NotFound();
+            }
+
+            return View(_mapper.Map<UpdateRoomDTO>(room));
         }
 
         [HttpPost]

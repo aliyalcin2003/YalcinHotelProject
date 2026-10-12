@@ -26,7 +26,10 @@ namespace YalcinHotel_UI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create() => View(new ServiceManagementViewModel());
+        public IActionResult Create()
+        {
+            return View(new ServiceManagementViewModel());
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]

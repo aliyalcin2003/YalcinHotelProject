@@ -47,9 +47,14 @@ namespace YalcinHotel_UI.Controllers
 
                 else 
                 {
-                    return User.IsInRole("Admin")
-                    ? RedirectToAction("Index", "Admin")
-                    : RedirectToAction("Index", "Home");
+                    if (User.IsInRole("Admin"))
+                    {
+                        return RedirectToAction("Index", "Admin");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
             }
 
@@ -94,9 +99,14 @@ namespace YalcinHotel_UI.Controllers
                 return LocalRedirect(model.ReturnUrl);
             }
 
-            return customer.Role == "Admin"
-                ? RedirectToAction("Index", "Admin")
-                : RedirectToAction("Index", "Home");
+            if (customer.Role == "Admin")
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpGet]
@@ -111,7 +121,10 @@ namespace YalcinHotel_UI.Controllers
         }
 
         [HttpGet]
-        public IActionResult ForgotPassword() => View(new ForgotPasswordViewModel());
+        public IActionResult ForgotPassword()
+        {
+            return View(new ForgotPasswordViewModel());
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -211,9 +224,14 @@ namespace YalcinHotel_UI.Controllers
             _customerService.Create(customer);
             await SignInCustomer(customer, rememberMe: false);
 
-            return customer.Role == "Admin"
-                ? RedirectToAction("Index", "Admin")
-                : RedirectToAction("Index", "Home");
+            if (customer.Role == "Admin")
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [Authorize]
@@ -281,12 +299,23 @@ namespace YalcinHotel_UI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult AccessDenied() => View();
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
 
         private Customer? GetCurrentCustomer()
         {
             var idValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return int.TryParse(idValue, out var id) ? _customerService.GetById(id) : null;
+            int id;
+            if (int.TryParse(idValue, out id))
+            {
+                return _customerService.GetById(id);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private Customer? GetResetCustomer(string token)
@@ -295,8 +324,10 @@ namespace YalcinHotel_UI.Controllers
             {
                 var protectedToken = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(token));
                 var payload = _resetTokenProtector.Unprotect(protectedToken).Split('|', 3);
-                if (payload.Length != 3 || !int.TryParse(payload[0], out var id) ||
-                    !long.TryParse(payload[1], out var expires) || expires < DateTimeOffset.UtcNow.ToUnixTimeSeconds())
+                int id;
+                long expires;
+                if (payload.Length != 3 || !int.TryParse(payload[0], out id) ||
+                    !long.TryParse(payload[1], out expires) || expires < DateTimeOffset.UtcNow.ToUnixTimeSeconds())
                 {
                     return null;
                 }
@@ -306,7 +337,7 @@ namespace YalcinHotel_UI.Controllers
                     ? customer
                     : null;
             }
-            catch (Exception exception) when (exception is FormatException or CryptographicException or ArgumentException)
+            catch (Exception exception) when (exception is FormatException || exception is CryptographicException || exception is ArgumentException)
             {
                 return null;
             }
@@ -397,9 +428,20 @@ namespace YalcinHotel_UI.Controllers
                 new AuthenticationProperties { IsPersistent = rememberMe, AllowRefresh = true });
         }
 
-        private static bool IsHttpUrl(string value) =>
-            Uri.TryCreate(value, UriKind.Absolute, out var uri) &&
-            (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps);
+        private static bool IsHttpUrl(string value)
+        {
+            Uri? uri;
+            if (Uri.TryCreate(value, UriKind.Absolute, out uri) &&
+                uri != null &&
+                (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
 

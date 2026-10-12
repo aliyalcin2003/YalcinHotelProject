@@ -8,7 +8,6 @@ namespace YalcinHotel_UI.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        private readonly IAboutService _aboutService;
         private readonly IContactService _contactService;
         private readonly ICustomerService _customerService;
         private readonly IEmployeeService _employeeService;
@@ -19,7 +18,6 @@ namespace YalcinHotel_UI.Controllers
         private readonly ITestimonialService _testimonialService;
 
         public AdminController(
-            IAboutService aboutService,
             IContactService contactService,
             ICustomerService customerService,
             IEmployeeService employeeService,
@@ -29,7 +27,6 @@ namespace YalcinHotel_UI.Controllers
             ISliderService sliderService,
             ITestimonialService testimonialService)
         {
-            _aboutService = aboutService;
             _contactService = contactService;
             _customerService = customerService;
             _employeeService = employeeService;
@@ -45,12 +42,9 @@ namespace YalcinHotel_UI.Controllers
             var reservations = _reservationService.GetAll(item => item.IsActive);
             var model = new AdminDashboardViewModel
             {
-                ActiveAboutCount = _aboutService.GetAll(item => item.IsActive).Count,
                 ActiveRoomCount = _roomService.GetAll(item => item.IsActive && item.IsAvailable).Count,
                 ReservationCount = reservations.Count,
-                PendingReservationCount = reservations.Count(item =>
-                    string.Equals(item.Status, "Beklemede", StringComparison.OrdinalIgnoreCase) ||
-                    string.Equals(item.Status, "Onay Bekliyor", StringComparison.OrdinalIgnoreCase)),
+                PendingReservationCount = reservations.Count(item => item.Status == "Beklemede" || item.Status == "Onay Bekliyor"),
                 CustomerCount = _customerService.GetAll(item => item.IsActive).Count,
                 UnreadContactCount = _contactService.GetAll(item => item.IsActive && !item.IsRead).Count,
                 ActiveEmployeeCount = _employeeService.GetAll(item => item.IsActive && item.Status).Count,

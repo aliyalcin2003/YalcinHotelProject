@@ -61,7 +61,11 @@ namespace YalcinHotel_UI.Controllers
                 ModelState.AddModelError(nameof(p.CheckOut), "Çıkış tarihi giriş tarihinden sonra olmalıdır.");
             }
 
-            var room = p.RoomId > 0 ? _roomService.GetById(p.RoomId) : null;
+            Room? room = null;
+            if (p.RoomId > 0)
+            {
+                room = _roomService.GetById(p.RoomId);
+            }
             if (room == null || !room.IsActive || !room.IsAvailable)
             {
                 ModelState.AddModelError(nameof(p.RoomId), "Seçtiğiniz oda şu anda müsait değil.");
@@ -181,7 +185,7 @@ namespace YalcinHotel_UI.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateStatus(int id, string status)
         {
-            if (status is not ("Onaylandı" or "Reddedildi"))
+            if (status != "Onaylandı" && status != "Reddedildi")
             {
                 return BadRequest();
             }

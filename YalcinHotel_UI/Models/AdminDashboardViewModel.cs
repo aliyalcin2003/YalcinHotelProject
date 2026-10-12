@@ -11,6 +11,5 @@ namespace YalcinHotel_UI.Models
         public int ActiveServiceCount { get; set; }
         public int ActiveSliderCount { get; set; }
         public int ActiveTestimonialCount { get; set; }
-        public int ActiveAboutCount { get; set; }
     }
 }

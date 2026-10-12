@@ -64,9 +64,6 @@ namespace YalcinHotel_UI
             builder.Services.AddScoped<ISliderService, SliderService>();
             builder.Services.AddScoped<ISliderDal, EfCoreSliderDal>();
 
-            builder.Services.AddScoped<IContactService, ContactService>();
-            builder.Services.AddScoped<IContactDal, EfCoreContactDal>();
-
             var app = builder.Build();
 
             EnsureDefaultAdmin(app);

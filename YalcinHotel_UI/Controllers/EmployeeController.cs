@@ -102,8 +102,18 @@ namespace YalcinHotel_UI.Controllers
                 .ToList();
         }
 
-        private static bool IsHttpUrl(string? value) =>
-            Uri.TryCreate(value, UriKind.Absolute, out var uri) &&
-            (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps);
+        private static bool IsHttpUrl(string? value)
+        {
+            Uri? uri;
+            if (Uri.TryCreate(value, UriKind.Absolute, out uri) &&
+                (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
