@@ -28,9 +28,9 @@ namespace YalcinHotel_DAL.Concrete.EfCore
 
             // Keep the runtime model aligned with the migration snapshot. Existing
             // customer rows receive this value when the migration is applied.
-            modelBuilder.Entity<Customer>()
-                .Property(customer => customer.Role)
-                .HasDefaultValue("Customer");
+            modelBuilder.Entity<Customer>() // ModelBuilder, Entity Framework Core'da veritabanı modelini yapılandırmak için kullanılan bir sınıftır. modelBuilder.Entity<Customer>() ifadesi, Customer entity'si için yapılandırma işlemlerini başlatır. Bu sayede, Customer entity'sine ait özellikler ve davranışlar üzerinde özelleştirmeler yapabiliriz.
+                .Property(customer => customer.Role) // Property metodu, Customer entity'sinin Role property'sini yapılandırmak için kullanılır. Bu sayede, Role property'si üzerinde varsayılan değer atama gibi işlemler gerçekleştirebiliriz.
+                .HasDefaultValue("Customer"); // hasDefaultValue metodu, veritabanına yeni bir kayıt eklendiğinde, Role property'si için varsayılan olarak "Customer" değerini atar. Bu sayede, eğer kullanıcı rolü belirtilmezse, otomatik olarak "Customer" rolü atanır.
 
             modelBuilder.Entity<Customer>()
                 .Property(customer => customer.IsAdminBootstrapped)

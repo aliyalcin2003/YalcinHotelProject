@@ -1,0 +1,171 @@
+/* Admin paneli karanlık tema */
+.admin-theme-toggle {
+    position: relative;
+    display: inline-block;
+    width: 110px;
+    height: 36px;
+    padding: 0;
+    color: #fff;
+    background: linear-gradient(120deg, #0798b9, #54e2ed);
+    border: 2px solid rgba(255, 255, 255, .78);
+    border-radius: 22px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .16);
+    transition: background .25s, box-shadow .25s;
+}
+
+.admin-theme-toggle .theme-switch-label {
+    position: absolute;
+    left: 6px;
+    right: 31px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: .47rem;
+    font-weight: 800;
+    letter-spacing: .2px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.admin-theme-toggle .theme-switch-knob {
+    position: absolute;
+    left: calc(100% - 31px);
+    top: 2px;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, .25);
+    transition: left .25s cubic-bezier(.2,.8,.2,1);
+}
+
+.admin-theme-toggle .theme-switch-knob i {
+    color: #ffc400;
+    font-size: 1rem;
+}
+
+.admin-theme-toggle[aria-checked="true"] {
+    background: linear-gradient(120deg, #43119c, #8975ff);
+    border-color: rgba(255, 255, 255, .86);
+}
+
+.admin-theme-toggle[aria-checked="true"] .theme-switch-label {
+    left: 35px;
+    right: 4px;
+    text-align: center;
+}
+
+.admin-theme-toggle[aria-checked="true"] .theme-switch-knob {
+    left: 2px;
+}
+
+.admin-theme-toggle[aria-checked="true"] .theme-switch-knob i {
+    color: #5523c5;
+}
+
+html[data-theme="dark"] .admin-body {
+    --admin-ink: #e3e9e7;
+    --admin-muted: #a6b4b3;
+    --admin-paper: #111a1d;
+    --admin-line: #344449;
+    --admin-white: #1b282c;
+    background: var(--admin-paper);
+    color: var(--admin-ink);
+}
+
+html[data-theme="dark"] .admin-topbar,
+html[data-theme="dark"] .dashboard-date,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .admin-shortcuts,
+html[data-theme="dark"] .admin-content .card,
+html[data-theme="dark"] .admin-content .card-header,
+html[data-theme="dark"] .admin-content .card-footer {
+    color: var(--admin-ink);
+    background: #1b282c;
+    border-color: var(--admin-line);
+}
+
+html[data-theme="dark"] .dashboard-heading h1,
+html[data-theme="dark"] .stats-heading h2,
+html[data-theme="dark"] .shortcut-copy h2,
+html[data-theme="dark"] .stat-card > strong,
+html[data-theme="dark"] .stat-card h3,
+html[data-theme="dark"] .admin-page-heading h1,
+html[data-theme="dark"] .admin-content .card-title,
+html[data-theme="dark"] .admin-empty h3 {
+    color: #edf1ef;
+}
+
+html[data-theme="dark"] .admin-content .table th {
+    color: #bac7c5;
+    background: #253438;
+}
+
+html[data-theme="dark"] .admin-content .table td {
+    color: #dce4e2;
+    border-color: #344449;
+}
+
+html[data-theme="dark"] .admin-content .form-control {
+    color: #edf1ef;
+    background: #111a1d;
+    border-color: #46585c;
+}
+
+html[data-theme="dark"] .admin-content label,
+html[data-theme="dark"] .table-room strong,
+html[data-theme="dark"] .service-admin-title strong,
+html[data-theme="dark"] .testimonial-comment {
+    color: #e0e8e5;
+}
+
+html[data-theme="dark"] .admin-checks,
+html[data-theme="dark"] .shortcut-button,
+html[data-theme="dark"] .shortcut-primary {
+    background: #202f33;
+    border-color: #3a4b4e;
+    color: #e0e8e5;
+}
+
+html[data-theme="dark"] .admin-logout-button,
+html[data-theme="dark"] .admin-theme-toggle {
+    color: #e0e8e5;
+    background: #202f33;
+    border-color: #46585c;
+}
+
+html[data-theme="dark"] .admin-site-link,
+html[data-theme="dark"] .dashboard-heading h1 em {
+    color: #8fd4c8;
+}
+
+@media (max-width: 700px) {
+    .admin-theme-toggle {
+        width: 110px;
+        height: 36px;
+    }
+
+    .admin-theme-toggle .theme-switch-knob {
+        top: 2px;
+        left: calc(100% - 31px);
+        width: 28px;
+        height: 28px;
+    }
+
+    .admin-theme-toggle[aria-checked="true"] .theme-switch-knob {
+        left: 2px;
+    }
+
+    .admin-theme-toggle .theme-switch-label {
+        font-size: .47rem;
+        left: 6px;
+        right: 31px;
+    }
+
+    .admin-theme-toggle[aria-checked="true"] .theme-switch-label {
+        left: 35px;
+        right: 4px;
+    }
+}

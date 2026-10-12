@@ -1,0 +1,308 @@
+/* Site tema düğmesi ve karanlık renkleri */
+.services-section {
+    color: var(--ink);
+    background: #f7f4ee;
+}
+
+.services-section .services-heading .eyebrow {
+    color: #9b7a35;
+}
+
+.services-section .services-heading h2 {
+    color: var(--ocean);
+}
+
+.services-section .services-heading p {
+    color: var(--muted);
+}
+
+.services-section .service-card {
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid #e4e8e7;
+    border-radius: 4px;
+    box-shadow: 0 8px 25px rgba(12, 42, 46, .06);
+}
+
+.services-section .service-card h3 {
+    color: var(--ocean);
+}
+
+.services-section .service-card p {
+    color: var(--muted);
+}
+
+.services-section .service-card.service-inactive {
+    background: #f0ece2;
+    border-color: #d8cda9;
+}
+
+.theme-toggle-item {
+    list-style: none;
+}
+
+.nav-links .nav-book {
+    padding: 8px 12px;
+    font-size: .76rem;
+}
+
+.theme-toggle {
+    position: relative;
+    display: inline-block;
+    width: 110px;
+    height: 36px;
+    padding: 0;
+    color: #fff;
+    background: linear-gradient(120deg, #0798b9, #54e2ed);
+    border: 2px solid rgba(255, 255, 255, .78);
+    border-radius: 22px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .16);
+    transition: background .25s, box-shadow .25s;
+}
+
+.theme-switch-label {
+    position: absolute;
+    left: 6px;
+    right: 31px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: .47rem;
+    font-weight: 800;
+    letter-spacing: .2px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.theme-switch-knob {
+    position: absolute;
+    left: calc(100% - 31px);
+    top: 2px;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, .25);
+    transition: left .25s cubic-bezier(.2,.8,.2,1);
+}
+
+.theme-switch-knob i {
+    color: #ffc400;
+    font-size: 1rem;
+}
+
+.theme-toggle[aria-checked="true"] {
+    background: linear-gradient(120deg, #43119c, #8975ff);
+    border-color: rgba(255, 255, 255, .86);
+}
+
+.theme-toggle[aria-checked="true"] .theme-switch-label {
+    left: 35px;
+    right: 4px;
+    text-align: center;
+}
+
+.theme-toggle[aria-checked="true"] .theme-switch-knob {
+    left: 2px;
+}
+
+.theme-toggle[aria-checked="true"] .theme-switch-knob i {
+    color: #5523c5;
+}
+
+html[data-theme="dark"] body {
+    color: #e4e9e8;
+    background: #111a1d;
+}
+
+html[data-theme="dark"] .services-section {
+    color: #fff;
+    background: var(--ocean);
+}
+
+html[data-theme="dark"] .services-section .services-heading .eyebrow,
+html[data-theme="dark"] .services-section .services-heading h2 {
+    color: #fff;
+}
+
+html[data-theme="dark"] .services-section .services-heading p,
+html[data-theme="dark"] .services-section .service-card p {
+    color: #b8c6c5;
+}
+
+html[data-theme="dark"] .services-section .service-card {
+    color: #fff;
+    background: transparent;
+    border-color: rgba(255, 255, 255, .12);
+    box-shadow: none;
+}
+
+html[data-theme="dark"] .services-section .service-card h3 {
+    color: #fff;
+}
+
+html[data-theme="dark"] .services-section .service-card.service-inactive {
+    background: rgba(255, 255, 255, .035);
+    border-color: rgba(240, 214, 118, .32);
+}
+
+html[data-theme="dark"] .rooms-section,
+html[data-theme="dark"] .about-section,
+html[data-theme="dark"] .testimonial-section,
+html[data-theme="dark"] .contact-section,
+html[data-theme="dark"] .profile-page,
+html[data-theme="dark"] .account-page {
+    color: #e4e9e8;
+}
+
+html[data-theme="dark"] .team-section {
+    color: #fff;
+    background: #111a1d;
+}
+
+html[data-theme="dark"] .team-section .section-heading h2,
+html[data-theme="dark"] .team-section .section-heading p {
+    color: #fff;
+}
+
+html[data-theme="dark"] .testimonial-section {
+    background: #111a1d;
+}
+
+html[data-theme="dark"] .testimonial-section .section-heading .eyebrow,
+html[data-theme="dark"] .testimonial-section .section-heading h2,
+html[data-theme="dark"] .testimonial-section .section-heading p {
+    color: #fff;
+}
+
+html[data-theme="dark"] .room-card,
+html[data-theme="dark"] .contact-details,
+html[data-theme="dark"] .contact-form-card,
+html[data-theme="dark"] .booking-section,
+html[data-theme="dark"] .account-card,
+html[data-theme="dark"] .profile-card,
+html[data-theme="dark"] .reservation-history-card,
+html[data-theme="dark"] .reservation-history-empty,
+html[data-theme="dark"] .testimonial-card,
+html[data-theme="dark"] .team-card {
+    color: #e4e9e8;
+    background: #1b282c;
+    border-color: #344449;
+}
+
+html[data-theme="dark"] .room-info h3,
+html[data-theme="dark"] .account-card h1,
+html[data-theme="dark"] .section-heading h2,
+html[data-theme="dark"] .about-text h2,
+html[data-theme="dark"] .team-section h2,
+html[data-theme="dark"] .testimonial-section h2,
+html[data-theme="dark"] .contact-section h2,
+html[data-theme="dark"] .profile-card-top h2,
+html[data-theme="dark"] .reservation-history-heading h2,
+html[data-theme="dark"] .reservation-history-card h3 {
+    color: #edf1ef;
+}
+
+html[data-theme="dark"] .room-info p,
+html[data-theme="dark"] .about-text p,
+html[data-theme="dark"] .section-heading p,
+html[data-theme="dark"] .testimonial-card > p,
+html[data-theme="dark"] .room-meta,
+html[data-theme="dark"] .contact-intro,
+html[data-theme="dark"] .reservation-history-heading p,
+html[data-theme="dark"] .reservation-history-dates,
+html[data-theme="dark"] .profile-card-top p {
+    color: #afbdbe;
+}
+
+html[data-theme="dark"] .room-card-bottom,
+html[data-theme="dark"] .profile-card-top {
+    border-color: #344449;
+}
+
+html[data-theme="dark"] .room-link,
+html[data-theme="dark"] .about-features,
+html[data-theme="dark"] .feature-item,
+html[data-theme="dark"] .team-card h3,
+html[data-theme="dark"] .testimonial-person strong {
+    color: #e4e9e8;
+}
+
+html[data-theme="dark"] .contact-form input,
+html[data-theme="dark"] .contact-form textarea,
+html[data-theme="dark"] .booking-form input,
+html[data-theme="dark"] .booking-form select,
+html[data-theme="dark"] .account-form input,
+html[data-theme="dark"] .profile-card input,
+html[data-theme="dark"] .profile-card select {
+    color: #edf1ef;
+    background: #111a1d;
+    border-color: #46585c;
+}
+
+html[data-theme="dark"] .booking-section h2,
+html[data-theme="dark"] .booking-section .field label {
+    color: #f1f4f3;
+}
+
+html[data-theme="dark"] .booking-section > p {
+    color: #c0cdcc;
+}
+
+html[data-theme="dark"] .contact-form .field label {
+    color: #f1f4f3;
+}
+
+html[data-theme="dark"] .booking-form input,
+html[data-theme="dark"] .booking-form select {
+    color: #f1f4f3;
+    background-color: #111a1d;
+    border-color: #46585c;
+    opacity: 1;
+}
+
+html[data-theme="dark"] .booking-form input::placeholder {
+    color: #aebcbb;
+    opacity: 1;
+}
+
+html[data-theme="dark"] .booking-form select option {
+    color: #f1f4f3;
+    background: #111a1d;
+}
+
+html[data-theme="dark"] .contact-form input::placeholder,
+html[data-theme="dark"] .contact-form textarea::placeholder,
+html[data-theme="dark"] .account-form input::placeholder {
+    color: #98a7a9;
+}
+
+html[data-theme="dark"] .account-dropdown {
+    background: #1b282c;
+    border-color: #344449;
+}
+
+html[data-theme="dark"] .account-dropdown a,
+html[data-theme="dark"] .account-dropdown button {
+    color: #e4e9e8;
+}
+
+html[data-theme="dark"] .room-carousel-controls button {
+    color: #e4e9e8;
+    background: #1b282c;
+    border-color: #46585c;
+}
+
+html[data-theme="dark"] .room-carousel-controls button:hover {
+    color: #fff;
+    background: var(--lagoon);
+}
+
+@media (max-width: 900px) {
+    .theme-toggle-item {
+        margin-top: 8px;
+    }
+
+}

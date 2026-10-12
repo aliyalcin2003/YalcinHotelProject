@@ -3,7 +3,6 @@ using YalcinHotel_BLL.Abstract;
 
 namespace YalcinHotel_UI.ViewComponents.Home
 {
-    [ViewComponent(Name = "_HomeServicesViewComponentPartial")]
     public class _HomeServicesViewComponentPartial : ViewComponent
     {
         private readonly IServiceService _service;
@@ -16,6 +15,7 @@ namespace YalcinHotel_UI.ViewComponents.Home
         public IViewComponentResult Invoke()
         {
             var services = _service.GetAll();
+
             return View("~/Views/Shared/_HomeServicesViewComponentPartial/Default.cshtml", services);
         }
     }

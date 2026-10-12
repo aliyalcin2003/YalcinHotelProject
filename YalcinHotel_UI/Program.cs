@@ -35,6 +35,8 @@ namespace YalcinHotel_UI
 
 
             //Dependency Injection - Bağımlılık Yönetimi
+            // AddScoped: Her istek için yeni bir örnek oluşturur ve aynı istek içinde aynı örneği kullanır.
+            // Service Class: İş mantığını içeren sınıflardır. Örneğin, AboutService sınıfı, About entity'si ile ilgili iş mantığını içerir.
             builder.Services.AddScoped<IAboutService, AboutService>();
             builder.Services.AddScoped<IAboutDal, EfCoreAboutDal>();
 
