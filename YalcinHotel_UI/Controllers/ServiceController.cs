@@ -19,8 +19,8 @@ namespace YalcinHotel_UI.Controllers
         public IActionResult Index()
         {
             var values = _serviceService.GetAll()
-                .OrderByDescending(item => item.IsActive)
-                .ThenBy(item => item.Title)
+                .OrderByDescending(item => item.IsActive) //OrderByDescending: Bu yöntem, bir koleksiyonu belirli bir özelliğe göre azalan sırada sıralar. Bu durumda, hizmetler önce etkinlik durumuna göre sıralanır; yani etkin olan hizmetler önce gelir.
+                .ThenBy(item => item.Title) //ThenBy: Bu yöntem, bir koleksiyonu birincil sıralama kriterine ek olarak ikincil bir kritere göre sıralar. Bu durumda, hizmetler önce etkinlik durumuna göre sıralandıktan sonra başlıklarına göre alfabetik olarak sıralanır.
                 .ToList();
             return View(values);
         }
@@ -84,7 +84,7 @@ namespace YalcinHotel_UI.Controllers
                 return View(model);
             }
 
-            value.Title = model.Title.Trim();
+            value.Title = model.Title.Trim(); //Trim(): Bu yöntem, bir string'in başındaki ve sonundaki boşlukları kaldırır. Bu, kullanıcıdan alınan verilerin temizlenmesini sağlar ve gereksiz boşlukların veri tabanına kaydedilmesini önler.
             value.Description = model.Description.Trim();
             value.IconUrl = model.IconUrl.Trim();
             _serviceService.Update(value);
@@ -107,7 +107,7 @@ namespace YalcinHotel_UI.Controllers
             TempData["ServiceMessage"] = value.IsActive
                 ? "Hizmet sitede etkinleştirildi."
                 : "Hizmet siteden kaldırıldı.";
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index)); //RedirectToAction: Belirtilen eylem yöntemine yönlendirme yapar. Bu, kullanıcıyı başka bir sayfaya veya eyleme yönlendirmek için kullanılır.
         }
     }
 }

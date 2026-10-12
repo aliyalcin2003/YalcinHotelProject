@@ -1,8 +1,9 @@
-@model IEnumerable<YalcinHotel_Entity.Service>
+@model IEnumerable<Service>
+@* IEnumerable: Veriyi belleğe hemen yüklemeyen, sadece sırayla okunabilen (foreach'e uygun) salt okunur koleksiyon.*@
 <section class="services-section">
     <div class="section-heading services-heading"><span class="eyebrow">KONFORUNUZ İÇİN</span><h2>Hizmetlerimiz</h2><p>Konaklamanızı özel kılacak olanaklarımızı keşfedin.</p></div>
     <div class="service-grid">
-        @foreach (var item in Model ?? Enumerable.Empty<YalcinHotel_Entity.Service>())
+        @foreach (var item in Model ?? Enumerable.Empty<Service>())
         {
             <article class="service-card @(item.IsActive ? "service-active" : "service-inactive")">
                 @if (!string.IsNullOrWhiteSpace(item.IconUrl))

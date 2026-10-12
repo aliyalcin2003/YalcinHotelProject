@@ -131,18 +131,18 @@ namespace YalcinHotel_UI
         private static void EnsureMangoPlantationService(WebApplication app)
         {
             const string title = "Mango Plantasyonu Gezileri";
-            const string description = "Dutch van der Linde iş birliğiyle kurulan özel mango bahçelerimizi gezip taze meyvelerin tadını çıkarabileceğiniz eşsiz bir tur.";
+            const string description = "Dutch Van Der Linde iş birliğiyle kurulan özel mango bahçelerimizi gezip taze meyvelerin tadını çıkarabileceğiniz eşsiz bir tur."; //const = değiştirilemez , sabit değer. Bu alan anlamına gelir.
             using var scope = app.Services.CreateScope();
-            var services = scope.ServiceProvider.GetRequiredService<IServiceService>();
-            var existing = services.GetAll()
+            var services = scope.ServiceProvider.GetRequiredService<IServiceService>(); //GetRequiredService: Belirtilen hizmet türünü alır. Eğer hizmet bulunamazsa bir hata fırlatır. Bu, bağımlılık enjeksiyonu (DI) konteynerinden bir hizmet örneğini almak için kullanılır.
+            var item = services.GetAll()
                 .FirstOrDefault(service => string.Equals(service.Title, title, StringComparison.OrdinalIgnoreCase));
-            if (existing != null)
+            if (item != null)
             {
-                if (existing.Description != description || existing.IconUrl != "fa-solid fa-seedling")
+                if (item.Description != description || item.IconUrl != "fa-solid fa-seedling")
                 {
-                    existing.Description = description;
-                    existing.IconUrl = "fa-solid fa-seedling";
-                    services.Update(existing);
+                    item.Description = description;
+                    item.IconUrl = "fa-solid fa-seedling"; //fa-solid fa-seedling = font awesome icon class. Bu sınıf, bir mango ağacını temsil eden bir simgeyi göstermek için kullanılır.
+                    services.Update(item);
                 }
                 return;
             }

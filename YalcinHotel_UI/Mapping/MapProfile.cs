@@ -14,7 +14,7 @@ namespace YalcinHotel_UI.Mapping
 {
     public class MapProfile : Profile
     {
-        public MapProfile() 
+        public MapProfile() // DTO kullanmak veri aktarımını sınırlar ve kontrol etmeye yardımcı olur; doğrulama ise DTO’daki kurallara ve uygulama koduna bağlıdır.
         {
             CreateMap<About, ResultAboutDTO>().ReverseMap();
             CreateMap<About, UpdateAboutDTO>().ReverseMap();
@@ -35,13 +35,7 @@ namespace YalcinHotel_UI.Mapping
                 .ForMember(d => d.Email, o => o.MapFrom(s => s.CustomerEmail))
                 .ForMember(d => d.Phone, o => o.MapFrom(s => s.CustomerPhone))
                 .ForMember(d => d.CheckIn, o => o.MapFrom(s => s.CheckInDate))
-                .ForMember(d => d.CheckOut, o => o.MapFrom(s => s.CheckOutDate));
-            CreateMap<CreateReservationDTO, Reservation>()
-                .ForMember(d => d.CustomerName, o => o.MapFrom(s => s.Name))
-                .ForMember(d => d.CustomerEmail, o => o.MapFrom(s => s.Email))
-                .ForMember(d => d.CustomerPhone, o => o.MapFrom(s => s.Phone))
-                .ForMember(d => d.CheckInDate, o => o.MapFrom(s => s.CheckIn))
-                .ForMember(d => d.CheckOutDate, o => o.MapFrom(s => s.CheckOut));
+                .ForMember(d => d.CheckOut, o => o.MapFrom(s => s.CheckOutDate)).ReverseMap();
             CreateMap<Reservation, ResultReservationDTO>().ReverseMap();
             CreateMap<Reservation, UpdateReservationDTO>().ReverseMap();
 
@@ -67,5 +61,7 @@ namespace YalcinHotel_UI.Mapping
         }
     }
 }
+            
+            
             
 

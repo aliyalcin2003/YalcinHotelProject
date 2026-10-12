@@ -32,7 +32,7 @@ namespace YalcinHotel_UI.Controllers
             return View();
         }
 
-        public IActionResult Services()
+        public IActionResult Services() // Services sayfası için yeni bir action metodu ekledik çünkü Services sayfasına yönlendirme yapmamız gerekiyor.
         {
             return View();
         }

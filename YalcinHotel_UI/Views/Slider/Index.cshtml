@@ -28,7 +28,7 @@
                         <td>@item.Title</td><td>@item.Page</td>
                         <td><img src="@item.ImageUrl1" alt="@item.Title" loading="lazy" style="max-width:140px;max-height:90px;object-fit:cover" /></td>
                         <td>
-                            @if (!string.IsNullOrWhiteSpace(item.ImageUrl2))
+                            @if (!string.IsNullOrWhiteSpace(item.ImageUrl2)) @*IsNullOrWhiteSpace: Metin null, boş veya sadece boşluk değilse (yani gösterilecek geçerli bir veri varsa) HTML etiketini ekrana basar.*@
                             {
                                 <img src="@item.ImageUrl2" alt="@item.Title" loading="lazy" style="max-width:140px;max-height:90px;object-fit:cover" />
                             }

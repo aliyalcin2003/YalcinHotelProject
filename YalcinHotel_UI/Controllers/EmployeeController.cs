@@ -58,7 +58,7 @@ namespace YalcinHotel_UI.Controllers
 
             _employeeService.Create(new Employee
             {
-                Name = model.Name.Trim(),
+                Name = model.Name.Trim(), // Trim(): Bu yöntem, bir string'in başındaki ve sonundaki boşlukları kaldırır. Bu, kullanıcıların yanlışlıkla ekledikleri boşlukları temizlemek için kullanılır.
                 Surname = model.Surname.Trim(),
                 Title = model.Title.Trim(),
                 ImageUrl = model.ImageUrl.Trim(),

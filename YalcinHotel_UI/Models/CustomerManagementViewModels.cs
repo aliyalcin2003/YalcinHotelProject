@@ -17,7 +17,7 @@ namespace YalcinHotel_UI.Models
 
     public class CurrentGuestRowViewModel // Bu sınıf, şu anda otelde konaklayan misafirlerin bilgilerini temsil eder. Her bir misafir için ad, e-posta, telefon numarası, rezervasyon yapılan oda başlığı, giriş ve çıkış tarihleri ile konuk sayısı gibi bilgileri içerir.
     {
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty; //string.empty kullandım çünkü null olmasını istemiyorum. null olmasını istememe sebebim, bu alanın her zaman bir değer içermesi gerektiğidir. Bu alan, misafirin adını saklamak için kullanılır ve kullanıcıya gösterilir.
         public string Email { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public string RoomTitle { get; set; } = string.Empty;

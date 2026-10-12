@@ -15,10 +15,10 @@
 <body>
     @await Component.InvokeAsync("_LayoutNavbarViewComponentPartial")
     <main>
-        @RenderBody()
+        @RenderBody() @* RenderBody: Bu yöntem, layout sayfasının içeriğini yerleştirmek için kullanılır. Her sayfa, layout'un belirli bir bölümüne kendi içeriğini ekler. *@
     </main>
-    @await Component.InvokeAsync("_LayoutFooterViewComponentPartial")
+    @await Component.InvokeAsync("_LayoutFooterViewComponentPartial") @*@await:  ASP.NET Core (Razor) mimarisinde asenkron (async) bir işlemi web sayfasını kilitlemeden arka planda beklemek için kullanılır.*@
     @await Component.InvokeAsync("_LayoutScriptViewComponentPartial")
-    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false) @* RenderSectionAsync: Bu yöntem, layout sayfasının belirli bir bölümüne ek scriptleri yerleştirmek için kullanılır. Her sayfa, layout'un belirli bir bölümüne kendi scriptlerini ekleyebilir. *@
 </body>
 </html>

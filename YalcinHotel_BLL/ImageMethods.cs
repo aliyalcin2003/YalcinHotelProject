@@ -13,7 +13,7 @@ namespace YalcinHotel_BLL
 
         public static string NormalizeImageUrl(string imageUrl) => imageUrl.Trim();
 
-        public static string? NormalizeOptionalImageUrl(string? imageUrl) =>
+        public static string? NormalizeOptionalImageUrl(string? imageUrl) => // NormalizeOptionalImageUrl: Bu yöntem, isteğe bağlı bir resim URL'sini normalize eder. Eğer resim URL'si boş veya null ise null döner, aksi takdirde URL'yi kırpar ve döner.
             string.IsNullOrWhiteSpace(imageUrl) ? null : imageUrl.Trim();
     }
 }
