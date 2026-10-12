@@ -4,6 +4,7 @@ using YalcinHotel_BLL.Abstract;
 using YalcinHotel_BLL.DTOs.RoomDTO;
 namespace YalcinHotel_UI.ViewComponents.Home
 {
+    // Ana sayfada öne çıkarılmak üzere işaretlenmiş uygun odaları hazırlar.
     public class _HomePopularRoomViewComponentPartial : ViewComponent
     {
         private readonly IRoomService _roomService;

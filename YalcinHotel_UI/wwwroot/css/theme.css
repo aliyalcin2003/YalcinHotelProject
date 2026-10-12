@@ -1,4 +1,4 @@
-/* Site tema düğmesi ve karanlık renkleri */
+/* Aydınlık temada hizmet kartları sayfanın açık renk paletini kullanır. */
 .services-section {
     color: var(--ink);
     background: #f7f4ee;
@@ -37,6 +37,7 @@
     border-color: #d8cda9;
 }
 
+/* Site ve admin tarafındaki ortak tema anahtarının yerleşimi. */
 .theme-toggle-item {
     list-style: none;
 }
@@ -117,6 +118,7 @@ html[data-theme="dark"] body {
     background: #111a1d;
 }
 
+/* Karanlık temada hizmet alanını önceki okyanus renklerine geri döndürür. */
 html[data-theme="dark"] .services-section {
     color: #fff;
     background: var(--ocean);
@@ -148,6 +150,7 @@ html[data-theme="dark"] .services-section .service-card.service-inactive {
     border-color: rgba(240, 214, 118, .32);
 }
 
+/* Karanlık tema seçiliyken metin ve kart yüzeyleri için okunabilir renkler. */
 html[data-theme="dark"] .rooms-section,
 html[data-theme="dark"] .about-section,
 html[data-theme="dark"] .testimonial-section,

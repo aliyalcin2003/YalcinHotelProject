@@ -4,6 +4,7 @@ using YalcinHotel_BLL.Abstract;
 using YalcinHotel_BLL.DTOs.AboutDTO;
 namespace YalcinHotel_UI.ViewComponents.Home
 {
+    // Ana sayfadaki Hakkımızda bölümüne aktif içerikleri getirip DTO listesi sağlar.
     public class _HomeAboutViewComponentPartial : ViewComponent
     {
         private readonly IAboutService _aboutService;

@@ -3,6 +3,7 @@ using YalcinHotel_BLL.Abstract;
 
 namespace YalcinHotel_UI.ViewComponents.Home
 {
+    // Hizmetleri durum bilgileriyle birlikte getirir; View aktif/pasif metnini buna göre gösterir.
     public class _HomeServicesViewComponentPartial : ViewComponent
     {
         private readonly IServiceService _service;

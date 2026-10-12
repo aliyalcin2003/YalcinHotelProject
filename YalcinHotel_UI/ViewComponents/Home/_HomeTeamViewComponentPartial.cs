@@ -3,6 +3,7 @@ using YalcinHotel_BLL.Abstract;
 
 namespace YalcinHotel_UI.ViewComponents.Home
 {
+    // Ana sayfada yalnızca aktif durumdaki çalışanları ekip listesi olarak sunar.
     public class _HomeTeamViewComponentPartial : ViewComponent
     {
         private readonly IEmployeeService _employeeService;

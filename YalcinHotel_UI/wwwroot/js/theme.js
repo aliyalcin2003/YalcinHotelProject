@@ -1,6 +1,8 @@
+// Tema kodu site ve admin panelinde ortaktır; iki ekrandaki düğmeler aynı tercihi değiştirir.
 document.addEventListener("DOMContentLoaded", () => {
     const themeButtons = document.querySelectorAll("[data-theme-toggle]");
 
+    // Tema değişince düğmenin erişilebilir açıklaması, etiketi ve simgesi birlikte güncellenir.
     const updateThemeButtons = (theme) => {
         themeButtons.forEach((button) => {
             const isDark = theme === "dark";
@@ -11,9 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
+    // Önceki seçim varsa onu kullanır; ilk ziyarette açık tema varsayılandır.
     let theme = document.documentElement.dataset.theme || "light";
     updateThemeButtons(theme);
 
+    // Anahtara basıldığında görünümü değiştirip tercihi sonraki sayfalar için saklar.
     themeButtons.forEach((button) => {
         button.addEventListener("click", () => {
             theme = theme === "dark" ? "light" : "dark";

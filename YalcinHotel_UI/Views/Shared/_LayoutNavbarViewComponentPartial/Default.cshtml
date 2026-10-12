@@ -12,6 +12,7 @@
             <li><a asp-controller="Reservation" asp-action="Create">Rezervasyon</a></li>
             <li><a asp-controller="Home" asp-action="Contact">İletişim</a></li>
             <li><a asp-controller="Home" asp-action="Services">Hizmetlerimiz</a></li>
+            @* data-theme-toggle, ortak theme.js kodunun anahtarı bulup tercihi kaydetmesini sağlar. *@
             <li class="theme-toggle-item"><button type="button" class="theme-toggle" data-theme-toggle role="switch" aria-checked="false" aria-label="Karanlık temaya geç"><span class="theme-switch-label" data-switch-label>GÜNDÜZ MODU</span><span class="theme-switch-knob"><i class="fa-solid fa-sun" data-switch-icon></i></span></button></li>
             @if (User.Identity?.IsAuthenticated == true)
             {

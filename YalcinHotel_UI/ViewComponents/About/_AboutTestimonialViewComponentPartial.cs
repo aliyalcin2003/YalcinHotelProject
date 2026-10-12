@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using YalcinHotel_BLL.Abstract;
 namespace YalcinHotel_UI.ViewComponents.About
 {
+    // Hakkımızda bölümünde yalnızca yönetici tarafından yayımlanmış yorumları gösterir.
     public class _AboutTestimonialViewComponentPartial : ViewComponent
     {
         private readonly ITestimonialService _testimonialService;

@@ -4,6 +4,7 @@ using YalcinHotel_BLL.Abstract;
 using YalcinHotel_BLL.DTOs.SliderDTO;
 namespace YalcinHotel_UI.ViewComponents.Home
 {
+    // Ana sayfaya ait aktif slider kaydını bulur ve hero görünümüne aktarır.
     public class _HomeSliderViewComponentPartial : ViewComponent
     {
         private readonly ISliderService _sliderService;

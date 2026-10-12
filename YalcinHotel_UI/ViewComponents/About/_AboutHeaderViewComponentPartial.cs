@@ -4,6 +4,7 @@ using YalcinHotel_BLL.Abstract;
 using YalcinHotel_BLL.DTOs.SliderDTO;
 namespace YalcinHotel_UI.ViewComponents.About
 {
+    // Hakkımızda sayfası için aktif slider kaydını seçer ve görünümün beklediği DTO'ya dönüştürür.
     public class _AboutHeaderViewComponentPartial : ViewComponent
     {
         private readonly ISliderService _sliderService;

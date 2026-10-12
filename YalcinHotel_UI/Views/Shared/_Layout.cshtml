@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Yalçın Hotel</title>
+    @* Seçilen temayı CSS yüklenmeden uygular; böylece sayfa açılırken tema parlaması olmaz. *@
     <script>
         document.documentElement.dataset.theme = localStorage.getItem("yalcin-hotel-theme") || "light";
     </script>

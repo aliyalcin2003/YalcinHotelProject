@@ -5,6 +5,7 @@ using YalcinHotel_BLL.DTOs.RoomDTO;
 using YalcinHotel_UI.Models;
 namespace YalcinHotel_UI.ViewComponents.Home
 {
+    // Aynı oda görünümünü ana sayfada popüler, odalar sayfasında tüm uygun odalar için kullanır.
     public class _HomeRoomViewComponentPartial : ViewComponent
     {
         private readonly IRoomService _roomService;
@@ -18,6 +19,7 @@ namespace YalcinHotel_UI.ViewComponents.Home
 
         public IViewComponentResult Invoke(bool popularOnly = false)
         {
+            // Pasif veya müsait olmayan odaları ziyaretçilere gösterme; gerekirse popülerlerle sınırla.
             var rooms = _roomService.GetAll(item => item.IsActive && item.IsAvailable && (!popularOnly || item.IsPopular));
             var model = new HomeRoomsViewModel
             {
